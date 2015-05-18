@@ -9,6 +9,8 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class GroupActivity extends Activity {
+	
+	
 	@OneToMany(mappedBy="creator")
 	private List<Task> inTask;
 	@ManyToMany

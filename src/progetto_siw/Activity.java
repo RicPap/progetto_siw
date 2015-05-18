@@ -1,20 +1,38 @@
 package progetto_siw;
 
 import java.util.Date;
+
 import javax.persistence.*;
 
+@Entity
 public abstract class Activity {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
 	//Attributi
+	@Column(nullable = false)
 	private String name;
+	
+	@Column(nullable = true)
 	private String description;
+	
+	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
+	
+	@Column(nullable = true)  //non necessaria la scadenza
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date expiration;
+	
+	@Column(nullable = true)  //non necessariamanete completato
 	@Temporal(TemporalType.DATE)
 	private Date completionDate;
+	
+	@Column(nullable = true)
 	boolean isComplete;
+	
 	@OneToOne
 	private User creator;
 	
@@ -67,5 +85,9 @@ public abstract class Activity {
 
 	public User getCreator() {
 		return creator;
+	}
+
+	public Long getId() {
+		return id;
 	}
 }
