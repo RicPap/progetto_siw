@@ -28,7 +28,7 @@ public class User {
 	private String name;
 	
 	@Column(nullable = false)
-	private String surname;
+	private String lastname;
 	
 	@Column(nullable = false, unique = true)
 	private String nickname;
@@ -38,11 +38,11 @@ public class User {
 	
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
-	private Date dataInscrizione;
+	private Date registrationDate;
 	
 	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
-	private Date dataNascita;
+	private Date birthDay;
 	
 	@OneToMany(mappedBy="creator")
 	private List<Activity> myActivities;
@@ -51,15 +51,15 @@ public class User {
 	private List<Activity> toDoTask;
 	
 	//Costruttore
-	public User(String name,String lastName,String nickname,String email,String password,Date nascita)
+	public User(String name,String lastName,String nickname,String email,String password,Date birth)
 	{
 		this.name = name;
-		this.surname = lastName;
+		this.lastname = lastName;
 		this.nickname = nickname;
 		this.email = email;
 		this.password = password;
-		this.dataInscrizione = new Date();
-		this.dataNascita = nascita;
+		this.registrationDate = new Date();
+		this.birthDay = birth;
 		this.myActivities = new LinkedList<Activity>();
 	}
 	//Metodi
@@ -80,11 +80,11 @@ public class User {
 	}
 
 	public String getLastName() {
-		return surname;
+		return lastname;
 	}
 
 	public void setLastName(String cognome) {
-		this.surname = cognome;
+		this.lastname = cognome;
 	}
 
 	public String getPassword() {
@@ -95,12 +95,8 @@ public class User {
 		this.password = password;
 	}
 
-	public Date getDataNascita() {
-		return dataNascita;
-	}
-
-	public void setDataNascita(Date dataNascita) {
-		this.dataNascita = dataNascita;
+	public Date getBirthDay() {
+		return birthDay;
 	}
 	
 	public String getNickName() {
@@ -110,7 +106,7 @@ public class User {
 	@Override
 	public boolean equals(Object o) {
 		User that = (User)o;
-		if(this.email.equals(that.getEmail()))
+		if(this.id.equals(that.getId()))
 				return true;
 		return false;
 	}

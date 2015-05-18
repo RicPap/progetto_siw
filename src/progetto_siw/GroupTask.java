@@ -17,4 +17,10 @@ public class GroupTask extends Task {
 		this.assignTo = new LinkedList<User>();
 		assignTo.add(this.getCreator().getCreator());
 	}
+	
+	public GroupTask(String name, String description, Date expiration,User target) {
+		super(name, description, expiration);
+		this.assignTo = new LinkedList<User>();
+		assignTo.add(target);
+	}
 }

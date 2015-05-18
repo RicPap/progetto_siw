@@ -14,4 +14,9 @@ public class IndividualTask extends Task {
 		super(name, description, expiration);
 		this.assignTo = this.getCreator().getCreator();
 	}
+	
+	public IndividualTask(String name, String description,Date expiration,User target) {
+		super(name, description, expiration);
+		this.assignTo = target;
+	}
 }
