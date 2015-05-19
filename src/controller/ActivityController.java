@@ -1,28 +1,32 @@
-package progetto_siw;
+package controller;
 
 import java.util.Date;
+
 import javax.ejb.EJB;
 
-public class TaskController {
-	
-	@EJB(beanName="taskFacde")
-	private TaskFacade taskFacade;
+import model.Activity;
+import model.ActivityFacade;
+
+public class ActivityController {
+
+	@EJB(beanName="activityFacade")
+	private ActivityFacade activityFacade;
 	private String name;
 	private String description;
 	private Date expiration;
 	private Date creationDate;
 	private Date completionDate;
 	private boolean isComplete;
-	private Task task;
+	private Activity activity;
 	
 	public String createIndividualTask() {
-		this.task = taskFacade.createIndividualTask(name, description, expiration);
-		return "task";
+		this.activity = activityFacade.createIndividualActivity(name, description, expiration, activity.getCreator());
+		return "activity";
 	}
 	
 	public String createGroupTask() {
-		this.task = taskFacade.createGroupTask(name, description, expiration);
-		return "task";
+		this.activity = activityFacade.createGroupActivity(name, description, expiration, activity.getCreator());
+		return "activity";
 	}
 
 	public String getName() {
@@ -65,12 +69,12 @@ public class TaskController {
 		this.isComplete = isComplete;
 	}
 
-	public Task getTask() {
-		return task;
+	public Activity getActivity() {
+		return activity;
 	}
 
-	public void setTask(Task task) {
-		this.task = task;
+	public void setActivity(Activity activity) {
+		this.activity = activity;
 	}
 
 	public Date getCreationDate() {

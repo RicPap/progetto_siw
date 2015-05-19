@@ -1,4 +1,4 @@
-package progetto_siw;
+package model;
 
 import java.util.Date;
 
@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 @Stateless(name="activityFacde")
 public class ActivityFacade {
 	
-	@PersistenceContext(unitName="")
+	@PersistenceContext(unitName="model-unit")
 	private EntityManager em;
 	
 	public Activity createIndividualActivity(String name, String description, Date expiration, User creator) {

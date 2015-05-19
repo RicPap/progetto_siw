@@ -1,4 +1,4 @@
-package progetto_siw;
+package model;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -47,8 +47,8 @@ public class User {
 	@OneToMany(mappedBy="creator")
 	private List<Activity> myActivities;
 	
-	@ManyToMany(mappedBy="relatedTo")   // ?
-	private List<Activity> toDoTask;
+	@ManyToMany(mappedBy="assignTo")
+	private List<Task> toDoTask;
 	
 	//Costruttore
 	public User(String name,String lastName,String nickname,String email,String password,Date birth)

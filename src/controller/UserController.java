@@ -1,9 +1,12 @@
-package progetto_siw;
+package controller;
 
 import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+
+import model.User;
+import model.UserFacade;
 
 @ManagedBean
 public class UserController {

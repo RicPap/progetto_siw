@@ -1,4 +1,4 @@
-package progetto_siw;
+package model;
 
 import java.util.Date;
 import javax.ejb.Stateless;
@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 @Stateless(name="userFacade")
 public class UserFacade {
 
-	@PersistenceContext(unitName="unit")
+	@PersistenceContext(unitName="model-unit")
 	private EntityManager em;
 	
 	public User createUser(String name,String lastName,String nickname,String email,String password,Date nascita) {

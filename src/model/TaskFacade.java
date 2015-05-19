@@ -1,4 +1,4 @@
-package progetto_siw;
+package model;
 
 import java.util.Date;
 import javax.ejb.Stateless;
@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 @Stateless(name="taskFacade")
 public class TaskFacade {
 	
-	@PersistenceContext(unitName="")
+	@PersistenceContext(unitName="model-unit")
 	private EntityManager em;
 	
 	public Task createIndividualTask(String name, String description,Date expiration) {

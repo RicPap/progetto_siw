@@ -1,4 +1,4 @@
-package progetto_siw;
+package model;
 
 import java.util.Date;
 import javax.persistence.Entity;
