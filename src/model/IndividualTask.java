@@ -1,13 +1,14 @@
 package model;
 
 import java.util.Date;
+
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class IndividualTask extends Task {
 	
-	@OneToOne
+	@ManyToOne
 	private User assignTo;
 	
 	public IndividualTask(String name, String description,Date expiration) {

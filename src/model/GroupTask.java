@@ -3,13 +3,14 @@ package model;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class GroupTask extends Task {
 	
-	@OneToMany
+	@ManyToOne
 	private List<User> assignTo;
 	
 	public GroupTask(String name, String description, Date expiration) {

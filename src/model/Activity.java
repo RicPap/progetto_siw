@@ -33,8 +33,8 @@ public abstract class Activity {
 	@Column(nullable = true)
 	boolean isComplete;
 	
-	@OneToOne
-	private User creator;
+	@ManyToOne
+	private User userCreator;
 	
 	//Costruttore
 	public Activity(String name,String description,Date expiration,User creator) {
@@ -43,7 +43,7 @@ public abstract class Activity {
 		this.isComplete = false;
 		this.expiration = expiration;
 		this.creationDate = new Date();
-		this.creator = creator;
+		this.userCreator = creator;
 	}
 	
 	//Metodi
@@ -84,7 +84,7 @@ public abstract class Activity {
 	}
 
 	public User getCreator() {
-		return creator;
+		return userCreator;
 	}
 
 	public Long getId() {

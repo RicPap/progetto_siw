@@ -30,7 +30,7 @@ public class User {
 	@Column(nullable = false)
 	private String lastname;
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String nickname;
 	
 	@Column(nullable = false)
@@ -44,7 +44,7 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	private Date birthDay;
 	
-	@OneToMany(mappedBy="creator")
+	@OneToMany(mappedBy="userCreator")
 	private List<Activity> myActivities;
 	
 	@ManyToMany(mappedBy="assignTo")
@@ -94,9 +94,17 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public void setBirthDay(Date bday) {
+		this.birthDay = bday;
+	}
 
 	public Date getBirthDay() {
 		return birthDay;
+	}
+	
+	public void setNickName(String nname) {
+		this.nickname = nname;
 	}
 	
 	public String getNickName() {

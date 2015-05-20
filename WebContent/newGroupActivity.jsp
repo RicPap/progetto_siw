@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>New Product</title>
+<title>New GroupActivity</title>
 </head>
 <body>
 <f:view>

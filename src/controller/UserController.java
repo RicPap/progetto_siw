@@ -23,7 +23,7 @@ public class UserController {
 	private User user;
 	
 	public String createUser() {
-		this.user = userFacade.createUser(name, lastName, nickname, email, password, birthDay);
+		this.user = userFacade.createUser(name, lastName,"goFace", email, password, new Date());
 		return "";
 	}
 
@@ -66,11 +66,19 @@ public class UserController {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	
+	public void setNickName(String nickname) {
+		this.nickname = nickname;
+	}
+	
 	public String getNickname() {
 		return nickname;
 	}
-
+	
+	public void setBirthDay(Date bday) {
+		this.birthDay = bday;
+	}
+	
 	public Date getBirthDay() {
 		return birthDay;
 	}

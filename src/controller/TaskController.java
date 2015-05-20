@@ -3,13 +3,15 @@ package controller;
 import java.util.Date;
 
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
 
 import model.Task;
 import model.TaskFacade;
 
+@ManagedBean
 public class TaskController {
 	
-	@EJB(beanName="taskFacde")
+	@EJB(beanName="taskFacade")
 	private TaskFacade taskFacade;
 	private String name;
 	private String description;

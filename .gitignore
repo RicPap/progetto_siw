@@ -8,6 +8,7 @@
 target/
 local.properties
 .loadpath
+persistence.xml
 *.jar
 *.war
 *.ear

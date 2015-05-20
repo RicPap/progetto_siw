@@ -3,10 +3,12 @@ package controller;
 import java.util.Date;
 
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
 
 import model.Activity;
 import model.ActivityFacade;
 
+@ManagedBean
 public class ActivityController {
 
 	@EJB(beanName="activityFacade")
