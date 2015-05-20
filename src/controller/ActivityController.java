@@ -19,12 +19,12 @@ public class ActivityController {
 	private boolean isComplete;
 	private Activity activity;
 	
-	public String createIndividualTask() {
+	public String createIndividualActivity() {
 		this.activity = activityFacade.createIndividualActivity(name, description, expiration, activity.getCreator());
 		return "activity";
 	}
 	
-	public String createGroupTask() {
+	public String createGroupActivity() {
 		this.activity = activityFacade.createGroupActivity(name, description, expiration, activity.getCreator());
 		return "activity";
 	}
