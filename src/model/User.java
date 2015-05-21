@@ -9,12 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@NamedQuery(name = "findAllUsers", query = "SELECT u FROM User u")
 public class User {
 	
 	@Id
@@ -47,7 +48,7 @@ public class User {
 	@OneToMany(mappedBy="userCreator")
 	private List<Activity> myActivities;
 	
-	@ManyToMany(mappedBy="assignTo")
+	@OneToMany(mappedBy="userCreator")
 	private List<Task> toDoTask;
 	
 	//Costruttore

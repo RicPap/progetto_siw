@@ -6,19 +6,12 @@
 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
 		<jta-data-source>PostgreSQL Database</jta-data-source>
 		<class>model.User</class>
-		<class>model.IndividualTask</class>
+		<class>model.Task</class>
 		<class>model.GroupActivity</class>
 		<class>model.IndividualActivity</class>
-		<class>model.GroupTask</class>
+		<class>model.Activity</class>
 		<properties>
-			<property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver" />
-			<property name="openjpa.ConnectionUserName" value="postgres" />
-			<property name="openjpa.ConnectionPassword" value="" />
-			<property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost/progetto-siw" />
-			<property name="openjpa.jdbc.DBDictionary" value="postgres" />
   			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction=add,ForeignKeys=true)" /> 
-			<property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE"/>
-  			<property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict,JoinForeignKeyDeleteAction=restrict"/>
 		</properties>
 	</persistence-unit>
 </persistence>

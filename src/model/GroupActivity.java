@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 public class GroupActivity extends Activity {
 	
 	
-	@OneToMany(mappedBy="creator")
+	@OneToMany(mappedBy="activityCreator")
 	private List<Task> inTask;
 	@ManyToMany
 	private List<User> UserGroup;

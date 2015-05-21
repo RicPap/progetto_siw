@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -22,9 +23,17 @@ public class UserController {
 	private Date registrationDate;
 	private User user;
 	
+	//per test
+	private List<User> users;
+	
 	public String createUser() {
 		this.user = userFacade.createUser(name, lastName,"goFace", email, password, new Date());
 		return "";
+	}
+	
+	public String listUsers() {
+		this.users = userFacade.getAllUsers();
+		return "allUsers";
 	}
 
 	public String getName() {
@@ -85,5 +94,13 @@ public class UserController {
 
 	public Date getRegistrationDate() {
 		return registrationDate;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 }

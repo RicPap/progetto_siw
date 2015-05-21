@@ -11,26 +11,14 @@ public class TaskFacade {
 	@PersistenceContext(unitName="model-unit")
 	private EntityManager em;
 	
-	public Task createIndividualTask(String name, String description,Date expiration) {
-		Task t = new IndividualTask(name,description,expiration);
+	public Task createTask(String name, String description,Date expiration) {
+		Task t = new Task(name,description,expiration);
 		em.persist(t);
 		return t;
 	}
 	
-	public Task createIndividualTask(String name, String description,Date expiration,User target) {
-		Task t = new IndividualTask(name,description,expiration,target);
-		em.persist(t);
-		return t;
-	}
-	
-	public Task createGroupTask(String name, String description, Date expiration) {
-		Task t = new GroupTask(name,description,expiration);
-		em.persist(t);
-		return t;
-	}
-	
-	public Task createGroupTask(String name, String description, Date expiration,User target) {
-		Task t = new GroupTask(name,description,expiration,target);
+	public Task createTask(String name, String description,Date expiration,User target) {
+		Task t = new Task(name,description,expiration,target);
 		em.persist(t);
 		return t;
 	}

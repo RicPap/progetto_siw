@@ -22,12 +22,7 @@ public class TaskController {
 	private Task task;
 	
 	public String createIndividualTask() {
-		this.task = taskFacade.createIndividualTask(name, description, expiration);
-		return "task";
-	}
-	
-	public String createGroupTask() {
-		this.task = taskFacade.createGroupTask(name, description, expiration);
+		this.task = taskFacade.createTask(name, description, expiration);
 		return "task";
 	}
 

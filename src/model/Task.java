@@ -12,7 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public abstract class Task {
+public class Task {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,6 +42,9 @@ public abstract class Task {
 	@ManyToOne
 	private Activity activityCreator;
 	
+	@ManyToOne
+	private User userCreator;
+	
 	//Costruttore
 	public Task(String name,String description,Date expiration) {
 		this.name = name;
@@ -49,6 +52,11 @@ public abstract class Task {
 		this.isComplete = false;
 		this.expiration = expiration;
 		this.creationDate = new Date();
+	}
+	
+	public Task(String name, String description, Date expiration, User assignTo) {
+		this(name,description,expiration);
+		this.userCreator = assignTo;
 	}
 	
 	//Metodi
@@ -88,11 +96,23 @@ public abstract class Task {
 		return creationDate;
 	}
 	
-	public Activity getCreator() {
-		return this.activityCreator;
+	public Activity getActivityCreator() {
+		return activityCreator;
+	}
+
+	public void setActivityCreator(Activity activityCreator) {
+		this.activityCreator = activityCreator;
+	}
+
+	public User getUserCreator() {
+		return userCreator;
+	}
+
+	public void setUserCreator(User userCreator) {
+		this.userCreator = userCreator;
 	}
 
 	public Long getId() {
 		return id;
-	}
+	}	
 }
