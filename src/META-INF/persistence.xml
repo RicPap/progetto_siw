@@ -9,9 +9,8 @@
 		<class>model.Task</class>
 		<class>model.GroupActivity</class>
 		<class>model.IndividualActivity</class>
-		<class>model.Activity</class>
 		<properties>
-  			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction=add,ForeignKeys=true)" /> 
+  			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" /> 
 		</properties>
 	</persistence-unit>
 </persistence>

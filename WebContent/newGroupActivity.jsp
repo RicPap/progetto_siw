@@ -20,8 +20,11 @@
     				cols="20" 
     				rows="5" /> 
     </div>
-    <div>Expires: <h:inputText value="#{activityController.expiration}" 
-                     required="false"/>
+    <div>Expires: <h:inputText value="#{activityController.expiration}"
+                     required="false">
+                     <f:convertDateTime pattern="ddMMyyyy" /> 
+                  </h:inputText>
+                     
 	</div>   
 	<div>
 		<h:commandButton value="Submit"  action="#{activityController.createGroupActivity}"/>

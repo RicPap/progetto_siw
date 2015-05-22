@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 import model.User;
 import model.UserFacade;
@@ -14,6 +15,9 @@ public class UserController {
 	
 	@EJB(beanName="userFacade")
 	private UserFacade userFacade;
+	
+	@ManagedProperty(value="#{param.id}")
+	private Long id;
 	private String name;
 	private String lastName;
 	private String email;
@@ -28,12 +32,20 @@ public class UserController {
 	
 	public String createUser() {
 		this.user = userFacade.createUser(name, lastName,"goFace", email, password, new Date());
-		return "";
+		return "index";
 	}
 	
 	public String listUsers() {
 		this.users = userFacade.getAllUsers();
 		return "allUsers";
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {

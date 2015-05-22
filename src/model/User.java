@@ -23,13 +23,13 @@ public class User {
 	private Long id;
 	
 	@Column(nullable = false)
-	private String email;
-	
-	@Column(nullable = false)
 	private String name;
 	
 	@Column(nullable = false)
 	private String lastname;
+	
+	@Column(nullable = false)
+	private String email;
 	
 	@Column(nullable = false)
 	private String nickname;
@@ -74,19 +74,19 @@ public class User {
 		this.email = email;
 	}
 
-	public String getNome() {
+	public String getName() {
 		return name;
 	}
 
-	public void setNome(String nome) {
+	public void setName(String nome) {
 		this.name = nome;
 	}
 
-	public String getLastName() {
+	public String getLastname() {
 		return lastname;
 	}
 
-	public void setLastName(String cognome) {
+	public void setLastname(String cognome) {
 		this.lastname = cognome;
 	}
 
@@ -115,11 +115,47 @@ public class User {
 	}
 	
 	@Override
-	public boolean equals(Object o) {
-		User that = (User)o;
-		if(this.id.equals(that.getId()))
-				return true;
-		return false;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result
+				+ ((lastname == null) ? 0 : lastname.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (lastname == null) {
+			if (other.lastname != null)
+				return false;
+		} else if (!lastname.equals(other.lastname))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 	public Long getId() {
 		return id;

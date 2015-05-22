@@ -9,6 +9,8 @@ import javax.persistence.OneToMany;
 @Entity
 public class IndividualActivity extends Activity {
 	
+	public IndividualActivity() {}
+
 	@OneToMany(mappedBy="activityCreator")
 	private List<Task> inTask;
 	

@@ -13,10 +13,10 @@
 <h:form>
 <table>
 	<tr>
-		<th>Name</th>
+		<th>Subscribed users</th>
 	</tr>
 	<c:forEach var="user" items="#{userController.users}">
-		<tr><td>${user.name}</td></tr>
+		<tr><td>${user.name} ${user.lastname} ${user.email}</td></tr>
 	</c:forEach>
 </table>
 </h:form>

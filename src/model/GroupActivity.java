@@ -16,6 +16,8 @@ public class GroupActivity extends Activity {
 	@ManyToMany
 	private List<User> UserGroup;
 	
+	public GroupActivity() {}
+	
 	public GroupActivity(String name, String description, Date expiration, User creator) {
 		super(name, description, expiration, creator);
 		this.inTask = new LinkedList<Task>();
