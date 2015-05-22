@@ -26,8 +26,6 @@ public class MemberController {
 	private Date birthDay;
 	private Date registrationDate;
 	private Member member;
-	
-	//per test
 	private List<Member> members;
 	
 	public String createMember() {
@@ -118,5 +116,10 @@ public class MemberController {
 
 	public void setMembers(List<Member> users) {
 		this.members = users;
+	}
+	
+	public String findMember() {
+		this.member = memberFacade.getMember(id);
+		return "member";
 	}
 }

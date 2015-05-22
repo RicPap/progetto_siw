@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
-@Stateless(name="userFacade")
+@Stateless(name="memberFacade")
 public class MemberFacade {
 
 	@PersistenceContext(unitName="model-unit")

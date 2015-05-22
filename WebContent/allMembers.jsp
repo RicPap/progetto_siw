@@ -16,7 +16,11 @@
 		<th>Subscribed members</th>
 	</tr>
 	<c:forEach var="member" items="#{memberController.members}">
-		<tr><td>${member.name} ${member.lastName} ${member.email}</td></tr>
+		<tr><td>
+		<h:commandLink action="#{memberController.findMember}" value="#{member.nickName}">
+			<f:param name="id" value="#{member.id}" />
+		</h:commandLink>
+		</td></tr>
 	</c:forEach>
 </table>
 </h:form>

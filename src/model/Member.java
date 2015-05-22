@@ -38,7 +38,7 @@ public class Member {
 	private String password;
 	
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date registrationDate;
 	
 	@Column(nullable = false)
