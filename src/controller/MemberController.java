@@ -7,14 +7,14 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
-import model.User;
-import model.UserFacade;
+import model.Member;
+import model.MemberFacade;
 
 @ManagedBean
-public class UserController {
+public class MemberController {
 	
-	@EJB(beanName="userFacade")
-	private UserFacade userFacade;
+	@EJB(beanName="memberFacade")
+	private MemberFacade memberFacade;
 	
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
@@ -22,24 +22,24 @@ public class UserController {
 	private String lastName;
 	private String email;
 	private String password;
-	private String nickname;
+	private String nickName;
 	private Date birthDay;
 	private Date registrationDate;
-	private User user;
+	private Member member;
 	
 	//per test
-	private List<User> users;
+	private List<Member> members;
 	
-	public String createUser() {
-		this.user = userFacade.createUser(name, lastName,"goFace", email, password, new Date());
+	public String createMember() {
+		this.member = memberFacade.createMember(name, lastName,nickName, email, password,birthDay);
 		return "index";
 	}
 	
-	public String listUsers() {
-		this.users = userFacade.getAllUsers();
-		return "allUsers";
+	public String listMembers() {
+		this.members = memberFacade.getAllMembers();
+		return "allMembers";
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -80,39 +80,43 @@ public class UserController {
 		this.password = password;
 	}
 
-	public User getUser() {
-		return user;
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
-	
-	public void setNickName(String nickname) {
-		this.nickname = nickname;
-	}
-	
-	public String getNickname() {
-		return nickname;
-	}
-	
-	public void setBirthDay(Date bday) {
-		this.birthDay = bday;
-	}
-	
+
 	public Date getBirthDay() {
 		return birthDay;
+	}
+
+	public void setBirthDay(Date birthDay) {
+		this.birthDay = birthDay;
 	}
 
 	public Date getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public List<User> getUsers() {
-		return users;
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member user) {
+		this.member = user;
+	}
+
+	public List<Member> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<Member> users) {
+		this.members = users;
 	}
 }

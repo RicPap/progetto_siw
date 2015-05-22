@@ -43,7 +43,7 @@ public class Task {
 	private Activity activityCreator;
 	
 	@ManyToOne
-	private User userCreator;
+	private Member userCreator;
 	
 	//Costruttore
 	public Task()  {}
@@ -56,7 +56,7 @@ public class Task {
 		this.creationDate = new Date();
 	}
 	
-	public Task(String name, String description, Date expiration, User assignTo) {
+	public Task(String name, String description, Date expiration, Member assignTo) {
 		this(name,description,expiration);
 		this.userCreator = assignTo;
 	}
@@ -106,11 +106,11 @@ public class Task {
 		this.activityCreator = activityCreator;
 	}
 
-	public User getUserCreator() {
+	public Member getUserCreator() {
 		return userCreator;
 	}
 
-	public void setUserCreator(User userCreator) {
+	public void setUserCreator(Member userCreator) {
 		this.userCreator = userCreator;
 	}
 

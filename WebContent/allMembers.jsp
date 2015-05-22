@@ -5,18 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Users</title>
+<title>Members</title>
 </head>
 <body>
 <f:view>
-<h1>Users</h1>
+<h1>Members</h1>
 <h:form>
 <table>
 	<tr>
-		<th>Subscribed users</th>
+		<th>Subscribed members</th>
 	</tr>
-	<c:forEach var="user" items="#{userController.users}">
-		<tr><td>${user.name} ${user.lastname} ${user.email}</td></tr>
+	<c:forEach var="member" items="#{memberController.members}">
+		<tr><td>${member.name} ${member.lastName} ${member.email}</td></tr>
 	</c:forEach>
 </table>
 </h:form>

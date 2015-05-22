@@ -15,26 +15,26 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQuery(name = "findAllUsers", query = "SELECT u FROM User u")
-public class User {
+@NamedQuery(name = "findAllUsers", query = "SELECT u FROM Member u")
+public class Member {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false,length=30)
 	private String name;
 	
-	@Column(nullable = false)
-	private String lastname;
+	@Column(nullable = false,length=30)
+	private String lastName;
 	
-	@Column(nullable = false)
+	@Column(nullable = false,length=30)
 	private String email;
 	
-	@Column(nullable = false)
-	private String nickname;
+	@Column(nullable = false,length=30,unique = true)
+	private String nickName;
 	
-	@Column(nullable = false)
+	@Column(nullable = false,length=30)
 	private String password;
 	
 	@Column(nullable = false)
@@ -52,20 +52,42 @@ public class User {
 	private List<Task> toDoTask;
 	
 	//Costruttore
-	public User() {}
+	public Member() {}
 	
-	public User(String name,String lastName,String nickname,String email,String password,Date birth)
+	public Member(String name,String lastName,String nickName,String email,String password,Date birth)
 	{
 		this.name = name;
-		this.lastname = lastName;
-		this.nickname = nickname;
+		this.lastName = lastName;
+		this.nickName = nickName;
 		this.email = email;
 		this.password = password;
 		this.registrationDate = new Date();
 		this.birthDay = birth;
 		this.myActivities = new LinkedList<Activity>();
 	}
+	
 	//Metodi
+	
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -74,20 +96,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getName() {
-		return name;
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setName(String nome) {
-		this.name = nome;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String cognome) {
-		this.lastname = cognome;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public String getPassword() {
@@ -97,21 +111,37 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public void setBirthDay(Date bday) {
-		this.birthDay = bday;
+
+	public Date getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 
 	public Date getBirthDay() {
 		return birthDay;
 	}
-	
-	public void setNickName(String nname) {
-		this.nickname = nname;
+
+	public void setBirthDay(Date birthDay) {
+		this.birthDay = birthDay;
 	}
-	
-	public String getNickName() {
-		return this.nickname;
+
+	public List<Activity> getMyActivities() {
+		return myActivities;
+	}
+
+	public void setMyActivities(List<Activity> myActivities) {
+		this.myActivities = myActivities;
+	}
+
+	public List<Task> getToDoTask() {
+		return toDoTask;
+	}
+
+	public void setToDoTask(List<Task> toDoTask) {
+		this.toDoTask = toDoTask;
 	}
 	
 	@Override
@@ -121,7 +151,7 @@ public class User {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
-				+ ((lastname == null) ? 0 : lastname.hashCode());
+				+ ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -134,7 +164,7 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Member other = (Member) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -145,10 +175,10 @@ public class User {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (lastname == null) {
-			if (other.lastname != null)
+		if (lastName == null) {
+			if (other.lastName != null)
 				return false;
-		} else if (!lastname.equals(other.lastname))
+		} else if (!lastName.equals(other.lastName))
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -156,8 +186,5 @@ public class User {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
-	}
-	public Long getId() {
-		return id;
 	}
 }

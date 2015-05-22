@@ -17,7 +17,7 @@ public class TaskFacade {
 		return t;
 	}
 	
-	public Task createTask(String name, String description,Date expiration,User target) {
+	public Task createTask(String name, String description,Date expiration,Member target) {
 		Task t = new Task(name,description,expiration,target);
 		em.persist(t);
 		return t;

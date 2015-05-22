@@ -14,14 +14,14 @@ public class GroupActivity extends Activity {
 	@OneToMany(mappedBy="activityCreator")
 	private List<Task> inTask;
 	@ManyToMany
-	private List<User> UserGroup;
+	private List<Member> UserGroup;
 	
 	public GroupActivity() {}
 	
-	public GroupActivity(String name, String description, Date expiration, User creator) {
+	public GroupActivity(String name, String description, Date expiration, Member creator) {
 		super(name, description, expiration, creator);
 		this.inTask = new LinkedList<Task>();
-		this.UserGroup = new LinkedList<User>();
+		this.UserGroup = new LinkedList<Member>();
 		this.UserGroup.add(creator);
 	}
 }

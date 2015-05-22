@@ -15,9 +15,9 @@
 		<ul>
 			<li><a href='<c:url value="/faces/newIndividualActivity.jsp" />'>Create a new Individual Activity</a></li>
 			<li><a href='<c:url value="/faces/newGroupActivity.jsp" />'>Create a new Group Activity</a></li>
-			<li><a href='<c:url value="/faces/newUser.jsp" />'>Create a new user</a></li>
+			<li><a href='<c:url value="/faces/newMember.jsp" />'>Create a new user</a></li>
 			<li><h:form>
-					<h:commandLink action="#{userController.listUsers}"
+					<h:commandLink action="#{memberController.listMembers}"
 						value="List all Users" />
 				</h:form></li>
 		</ul>

@@ -34,12 +34,12 @@ public abstract class Activity {
 	boolean isComplete;
 	
 	@ManyToOne
-	private User userCreator;
+	private Member userCreator;
 	
 	//Costruttore
 	public Activity() { }
 	
-	public Activity(String name,String description,Date expiration,User creator) {
+	public Activity(String name,String description,Date expiration,Member creator) {
 		this.name = name;
 		this.description = description;
 		this.isComplete = false;
@@ -85,7 +85,7 @@ public abstract class Activity {
 		return creationDate;
 	}
 
-	public User getCreator() {
+	public Member getCreator() {
 		return userCreator;
 	}
 

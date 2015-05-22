@@ -1,0 +1,11 @@
+<!DOCTYPE xml>
+<tomee>
+<Resource id="PostgreSQL Database" type="DataSource">
+	   JdbcDriver   org.postgresql.Driver
+    JdbcUrl  jdbc:postgresql://localhost/progetto-siw
+    UserName     postgres
+    Password     blackduke93
+           JtaManaged      true
+           DefaultAutoCommit   false
+</Resource>
+</tomee>

@@ -14,7 +14,7 @@ public class IndividualActivity extends Activity {
 	@OneToMany(mappedBy="activityCreator")
 	private List<Task> inTask;
 	
-	public IndividualActivity(String name, String description, Date expiration, User creator) {
+	public IndividualActivity(String name, String description, Date expiration, Member creator) {
 		super(name, description, expiration, creator);
 		this.inTask = new LinkedList<Task>();
 	}
