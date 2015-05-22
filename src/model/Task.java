@@ -46,6 +46,8 @@ public class Task {
 	private User userCreator;
 	
 	//Costruttore
+	public Task()  {}
+	
 	public Task(String name,String description,Date expiration) {
 		this.name = name;
 		this.description = description;

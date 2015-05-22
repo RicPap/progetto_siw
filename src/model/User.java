@@ -52,6 +52,8 @@ public class User {
 	private List<Task> toDoTask;
 	
 	//Costruttore
+	public User() {}
+	
 	public User(String name,String lastName,String nickname,String email,String password,Date birth)
 	{
 		this.name = name;

@@ -37,6 +37,8 @@ public abstract class Activity {
 	private User userCreator;
 	
 	//Costruttore
+	public Activity() { }
+	
 	public Activity(String name,String description,Date expiration,User creator) {
 		this.name = name;
 		this.description = description;
