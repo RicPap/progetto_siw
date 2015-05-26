@@ -6,7 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.Query;
 
 @Stateless(name="memberFacade")
 public class MemberFacade {
@@ -24,11 +24,18 @@ public class MemberFacade {
 		Member u = em.find(Member.class, id);
 		return u;
 	}
+	
+	public Member getMember(String email) {
+		Query query = em.createNamedQuery("findMemberByEmail");
+		query.setParameter("email", email);
+		Member u = (Member) query.getSingleResult();
+		return u;
+	}
 
 	public List<Member> getAllMembers() {
-		CriteriaQuery<Member> cq = em.getCriteriaBuilder().createQuery(Member.class);
-        cq.select(cq.from(Member.class));
-        List<Member> users = em.createQuery(cq).getResultList();
+		Query query = em.createNamedQuery("findAllMember");
+        @SuppressWarnings("unchecked")
+		List<Member> users = query.getResultList();
 		return users;
 	}
 }

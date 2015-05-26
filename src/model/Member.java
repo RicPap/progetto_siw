@@ -9,13 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQuery(name = "findAllUsers", query = "SELECT u FROM Member u")
+@NamedQueries({ @NamedQuery(name = "findAllMember", query = "SELECT m FROM Member m"),
+		@NamedQuery(name = "findMemberByEmail", query = "SELECT m FROM Member m where m.email = :email")})
 public class Member {
 	
 	@Id
@@ -28,7 +30,7 @@ public class Member {
 	@Column(nullable = false,length=30)
 	private String lastName;
 	
-	@Column(nullable = false,length=30)
+	@Column(nullable = false,length=30,unique = true)
 	private String email;
 	
 	@Column(nullable = false,length=30,unique = true)
@@ -67,6 +69,10 @@ public class Member {
 	}
 	
 	//Metodi
+	
+	public boolean validatePwd(String pwd) {
+		return password.equals(pwd);
+	}
 	
 	public Long getId() {
 		return id;
