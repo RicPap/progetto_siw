@@ -26,9 +26,15 @@ public class MemberFacade {
 	}
 	
 	public Member getMember(String email) {
+		Member u;
 		Query query = em.createNamedQuery("findMemberByEmail");
 		query.setParameter("email", email);
-		Member u = (Member) query.getSingleResult();
+		try {
+			u = (Member) query.getSingleResult();
+		}
+		catch(Exception e) {
+			u = null;
+		}
 		return u;
 	}
 

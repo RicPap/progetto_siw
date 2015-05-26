@@ -34,11 +34,15 @@ public class MemberController {
 	
 	public String logIn() {
 		this.member = memberFacade.getMember(email);
-		if(!member.validatePwd(password))
-		{
+		if(this.member == null) {
 			passCorrect = false;
 			return "logIn";
 		}
+		else if(!member.validatePwd(password)) {
+			passCorrect = false;
+			return "logIn";
+		}
+		
 		return "member";
 	}
 	

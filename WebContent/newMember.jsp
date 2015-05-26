@@ -22,7 +22,7 @@
                     id="lastname"/> <h:message for="lastname" /> 
     </div>
      <div>Birthday: <h:inputText value="#{memberController.birthDay}">
-                    <f:convertDateTime pattern="yyyy-MM-dd"/>
+                    <f:convertDateTime pattern="yyyy-MM-dd" type="date" dateStyle="long"/>
                     </h:inputText>
     </div>
     <div>Nickname: <h:inputText value="#{memberController.nickName}" 

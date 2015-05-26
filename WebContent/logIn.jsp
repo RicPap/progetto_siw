@@ -12,9 +12,15 @@
 <body>
 <f:view>
 <h:form>
-    <div>Email: <h:inputText value="#{memberController.email}"/>
+    <div>Email: <h:inputText value="#{memberController.email}"
+    				required="true"
+                    requiredMessage="Email is mandatory"
+                    id="email"/> <h:message for="email" />
 	</div>
-	<div>Password: <h:inputSecret value="#{memberController.password}"/>
+	<div>Password: <h:inputSecret value="#{memberController.password}"
+						required="true"
+                     	requiredMessage="Password is mandatory"
+                     	id="pwd"/> <h:message for="pwd" />
 	<div><h:outputText value="Email or Password incorrect" rendered="#{!memberController.passCorrect}"></h:outputText>
 	</div>
 		<h:commandButton value="Submit"  action="#{memberController.logIn}"/>
