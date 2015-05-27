@@ -26,7 +26,10 @@
                   </h:inputText>
 	</div>   
 	<div>
-		<h:commandButton value="Submit"  action="#{activityController.createIndividualActivity}"/>
+		<h:commandButton value="Submit"  action="#{activityController.createIndividualActivity}">
+		<f:setPropertyActionListener target="#{activityController.currentMember}" 
+							 value="#{memberController.member}" />
+		</h:commandButton>
 	</div>
 	<!-- 
 	<h:commandLink action="#{productController.listProducts}"

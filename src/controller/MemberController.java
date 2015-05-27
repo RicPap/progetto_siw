@@ -29,11 +29,18 @@ public class MemberController {
 	
 	public String createMember() {
 		this.member = memberFacade.createMember(name, lastName,nickName, email, password,birthDay);
-		return "index";
+		return "logIn";
 	}
 	
 	public String logIn() {
-		this.member = memberFacade.getMember(email);
+		this.member = memberFacade.getMember(this.email);
+//		if (this.member != null) {
+//			if (this.member.validatePwd(this.password)) {
+//				return "member";
+//			}
+//		}
+//		passCorrect = false;
+//		return "logIn";
 		if(this.member == null) {
 			passCorrect = false;
 			return "logIn";

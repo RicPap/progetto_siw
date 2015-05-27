@@ -15,6 +15,19 @@
 <div>Email: ${memberController.member.email}</div>
 <div>Birthday: ${memberController.member.birthDay}</div>
 <div>RegistrationDate: ${memberController.member.registrationDate}</div>
+<h2> My Activities </h2>
+<!-- cose(!! pulsante completa attività) -->
+<h2> My Tasks </h2>
+<!--  altre cose(!! linkati alla pagina task per completarlo e dettagli) -->
+<div>
+
+<a href='<c:url value="/faces/newIndividualActivity.jsp" />'>
+Create a new Individual Activity</a></div>
+
+<div>
+<a href='<c:url value="/faces/newGroupActivity.jsp" />'>
+Create a new Group Activity</a></div>
+
 </f:view>
 </body>
 </html>

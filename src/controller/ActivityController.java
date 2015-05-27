@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 
 import model.Activity;
 import model.ActivityFacade;
+import model.Member;
 
 @ManagedBean
 public class ActivityController {
@@ -20,14 +21,15 @@ public class ActivityController {
 	private Date completionDate;
 	private boolean isComplete;
 	private Activity activity;
+	private Member currentMember;
 	
 	public String createIndividualActivity() {
-		this.activity = activityFacade.createIndividualActivity(name, description, expiration, activity.getCreator());
+		this.activity = activityFacade.createIndividualActivity(name, description, expiration, currentMember);
 		return "activity";
 	}
 	
 	public String createGroupActivity() {
-		this.activity = activityFacade.createGroupActivity(name, description, expiration, activity.getCreator());
+		this.activity = activityFacade.createGroupActivity(name, description, expiration, currentMember);
 		return "activity";
 	}
 
@@ -81,5 +83,13 @@ public class ActivityController {
 
 	public Date getCreationDate() {
 		return creationDate;
+	}
+
+	public Member getCurrentMember() {
+		return currentMember;
+	}
+
+	public void setCurrentMember(Member currentMember) {
+		this.currentMember = currentMember;
 	}
 }

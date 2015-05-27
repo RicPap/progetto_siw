@@ -25,6 +25,8 @@
 	</div>
 		<h:commandButton value="Submit"  action="#{memberController.logIn}"/>
 	</div>
+	<div><a href='<c:url value="/faces/newMember.jsp" />'>Register a new user</a></div>
+	<div><a href='<c:url value="/faces/index.jsp" />'>vai al vecchio index</a></div>
 </h:form>
 </f:view>
 </body>
