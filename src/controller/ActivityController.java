@@ -25,12 +25,12 @@ public class ActivityController {
 	
 	public String createIndividualActivity() {
 		this.activity = activityFacade.createIndividualActivity(name, description, expiration, currentMember);
-		return "activity";
+		return "member";
 	}
 	
 	public String createGroupActivity() {
 		this.activity = activityFacade.createGroupActivity(name, description, expiration, currentMember);
-		return "activity";
+		return "member";
 	}
 
 	public String getName() {

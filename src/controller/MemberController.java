@@ -2,9 +2,11 @@ package controller;
 
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+
 import model.Member;
 import model.MemberFacade;
 
@@ -23,6 +25,7 @@ public class MemberController {
 	private String nickName;
 	private Date birthDay;
 	private Date registrationDate;
+	@ManagedProperty(value="#{param.currentMember}")
 	private Member member;
 	private boolean passCorrect = true;
 	private List<Member> members;
@@ -34,23 +37,13 @@ public class MemberController {
 	
 	public String logIn() {
 		this.member = memberFacade.getMember(this.email);
-//		if (this.member != null) {
-//			if (this.member.validatePwd(this.password)) {
-//				return "member";
-//			}
-//		}
-//		passCorrect = false;
-//		return "logIn";
-		if(this.member == null) {
-			passCorrect = false;
-			return "logIn";
+		if (this.member != null) {
+			if (this.member.validatePwd(this.password)) {
+				return "member";
+			}
 		}
-		else if(!member.validatePwd(password)) {
-			passCorrect = false;
-			return "logIn";
-		}
-		
-		return "member";
+		passCorrect = false;
+		return "logIn";
 	}
 	
 	public String listMembers() {

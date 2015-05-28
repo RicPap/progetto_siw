@@ -29,9 +29,6 @@
 	<div>
 		<h:commandButton value="Submit"  action="#{activityController.createGroupActivity}"/>
 	</div>
-	<!-- 
-	<h:commandLink action="#{productController.listProducts}"
-						value="List all Products" /> -->
 </h:form>
 </f:view>
 </body>

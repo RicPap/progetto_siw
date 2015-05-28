@@ -16,17 +16,36 @@
 <div>Birthday: ${memberController.member.birthDay}</div>
 <div>RegistrationDate: ${memberController.member.registrationDate}</div>
 <h2> My Activities </h2>
-<!-- cose(!! pulsante completa attività) -->
+<!--
+<ul>
+<c:forEach var="elem" items="">
+	<li>
+	<h:commandLink action="#{memberController.findMyActivity}" value="#{activity.name}">
+			<f:param name="id" value="#{activity.id}" />
+		</h:commandLink>
+	</li>
+</c:forEach>
+</ul>
 <h2> My Tasks </h2>
-<!--  altre cose(!! linkati alla pagina task per completarlo e dettagli) -->
+<ul>
+<c:forEach var="elem" items="">
+	<li>
+	<h:commandLink action="#{taskController.findTask}" value="#{task.name}">
+			<f:param name="id" value="#{task.id}" />
+	</h:commandLink>
+	</li>
+</c:forEach>
+</ul>
+-->
 <div>
-
 <a href='<c:url value="/faces/newIndividualActivity.jsp" />'>
-Create a new Individual Activity</a></div>
+Create a new Individual Activity</a>
+</div>
 
 <div>
 <a href='<c:url value="/faces/newGroupActivity.jsp" />'>
-Create a new Group Activity</a></div>
+Create a new Group Activity</a>
+</div>
 
 </f:view>
 </body>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>New Product</title>
+<title>New Individual Activity</title>
 </head>
 <body>
 <f:view>
@@ -22,18 +22,14 @@
     </div>
     <div>Expires: <h:inputText value="#{activityController.expiration}"
                      required="false">
-                     <f:convertDateTime pattern="ddMMyyyy" /> 
+                     <f:convertDateTime pattern="dd-MM-yyyy" /> 
                   </h:inputText>
 	</div>   
 	<div>
 		<h:commandButton value="Submit"  action="#{activityController.createIndividualActivity}">
-		<f:setPropertyActionListener target="#{activityController.currentMember}" 
-							 value="#{memberController.member}" />
+		<f:param name="currentMember" value="#{activityController.currentMember}" />
 		</h:commandButton>
 	</div>
-	<!-- 
-	<h:commandLink action="#{productController.listProducts}"
-						value="List all Products" /> -->
 </h:form>
 </f:view>
 </body>

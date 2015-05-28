@@ -7,21 +7,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Progetto SIW</title>
+<title>A warm welcome in ActivityTask</title>
 </head>
 <body>
 	<f:view>
-		<h1>Progetto SIW</h1>
-		<ul>
-			<li><a href='<c:url value="/faces/newIndividualActivity.jsp" />'>Create a new Individual Activity</a></li>
-			<li><a href='<c:url value="/faces/newGroupActivity.jsp" />'>Create a new Group Activity</a></li>
-			<li><a href='<c:url value="/faces/newMember.jsp" />'>Create a new user</a></li>
-			<li><a href='<c:url value="/faces/logIn.jsp" />'>_Log in_</a></li>
-			<li><h:form>
-					<h:commandLink action="#{memberController.listMembers}"
-						value="List all Users" />
-				</h:form></li>
-		</ul>
+		<h1>ActivityTask</h1>
+			<div>If you still don't have an account, register now!
+			<a href='<c:url value="/faces/newMember.jsp" />'>Create a new user</a>
+			</div>
+			<div>If you have an account, please sign in.
+			<a href='<c:url value="/faces/logIn.jsp" />'>Sign in</a>
+			</div>
 	</f:view>
 </body>
 </html>

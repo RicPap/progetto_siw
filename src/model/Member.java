@@ -3,8 +3,10 @@ package model;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,7 +48,7 @@ public class Member {
 	@Temporal(TemporalType.DATE)
 	private Date birthDay;
 	
-	@OneToMany(mappedBy="userCreator")
+	@OneToMany(mappedBy="userCreator",fetch=FetchType.EAGER)
 	private List<Activity> myActivities;
 	
 	@OneToMany(mappedBy="userCreator")
