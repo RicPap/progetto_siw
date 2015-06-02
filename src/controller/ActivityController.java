@@ -4,12 +4,15 @@ import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
 import model.Activity;
 import model.ActivityFacade;
 import model.Member;
 
-@ManagedBean
+@ManagedBean(name = "activityController")
+@RequestScoped
 public class ActivityController {
 
 	@EJB(beanName="activityFacade")
@@ -21,6 +24,7 @@ public class ActivityController {
 	private Date completionDate;
 	private boolean isComplete;
 	private Activity activity;
+	@ManagedProperty(value = "#{memberController.member}")
 	private Member currentMember;
 	
 	public String createIndividualActivity() {

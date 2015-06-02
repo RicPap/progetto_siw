@@ -49,6 +49,15 @@ public abstract class Activity {
 	}
 	
 	//Metodi
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -65,12 +74,20 @@ public abstract class Activity {
 		this.description = description;
 	}
 
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
 	public Date getExpiration() {
 		return expiration;
 	}
 
-	public void setExpiration(Date scadenza) {
-		this.expiration = scadenza;
+	public void setExpiration(Date expiration) {
+		this.expiration = expiration;
 	}
 
 	public Date getCompletionDate() {
@@ -81,15 +98,19 @@ public abstract class Activity {
 		this.completionDate = completionDate;
 	}
 
-	public Date getCreationDate() {
-		return creationDate;
+	public boolean isComplete() {
+		return isComplete;
 	}
 
-	public Member getCreator() {
+	public void setComplete(boolean isComplete) {
+		this.isComplete = isComplete;
+	}
+
+	public Member getUserCreator() {
 		return userCreator;
 	}
 
-	public Long getId() {
-		return id;
+	public void setUserCreator(Member userCreator) {
+		this.userCreator = userCreator;
 	}
 }

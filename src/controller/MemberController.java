@@ -6,11 +6,13 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 import model.Member;
 import model.MemberFacade;
 
-@ManagedBean
+@ManagedBean(name="memberController")
+@SessionScoped
 public class MemberController {
 	
 	@EJB(beanName="memberFacade")
@@ -25,7 +27,6 @@ public class MemberController {
 	private String nickName;
 	private Date birthDay;
 	private Date registrationDate;
-	@ManagedProperty(value="#{param.currentMember}")
 	private Member member;
 	private boolean passCorrect = true;
 	private List<Member> members;
