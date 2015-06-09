@@ -40,6 +40,12 @@ public class ActivityController {
 		return "member";
 	}
 	
+	public String removeActivity() {
+		//this.activity = superC.getCurrentActivity();
+		this.activityFacade.removeActivity(this.id);
+		return "member";
+	}
+	
 	public String findActivity() {
 		Member currentMember = superC.getCurrentMember();
 		this.activity = activityFacade.getActivity(id);

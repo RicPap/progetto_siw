@@ -18,6 +18,10 @@ public class TaskFacade {
 		return t;
 	}
 	
+	public void removeTask(Long id) {
+		em.remove(em.find(Task.class, id));
+	}
+	
 	public Task getTask(Long id) {
 		Task t = em.find(Task.class,id);
 		return t;

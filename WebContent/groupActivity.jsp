@@ -10,6 +10,7 @@
 <f:view>
 <h1>${superController.currentActivity.name}</h1>
 <h2>Details</h2>
+<div>This is a group Activity</div>
 <div>Description: ${superController.currentActivity.description}</div>
 <div>
 	<h:outputText value="Expiration: "/>
@@ -72,8 +73,15 @@
 </h:outputLink>
 </div>
 <div>
+	<h:form>
+		<h:commandLink action="#{activityController.removeActivity}" value="Remove this activity">
+			<f:setPropertyActionListener value="#{superController.currentActivity.id}" target="#{activityController.id}"/>
+		</h:commandLink>
+	</h:form>
+</div>
+<div>
 <h:outputLink value="member.jsp" >
-	<h:outputText value="Back to yuor personal page" />
+	<h:outputText value="Back to your personal page" />
 </h:outputLink>
 </div>
 </f:view>

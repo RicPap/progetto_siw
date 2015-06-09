@@ -10,6 +10,7 @@
 <f:view>
 <h1>${superController.currentActivity.name}</h1>
 <h2>Details</h2>
+<div>This is an individual Activity</div>
 <div>Description: ${superController.currentActivity.description}</div>
 <div>
 	<h:outputText value="Expiration: "/>
@@ -65,6 +66,13 @@
 <h:outputLink value="newIndividualTask.jsp" >
 	<h:outputText value="Create new individual task" />
 </h:outputLink>
+</div>
+<div>
+	<h:form>
+		<h:commandLink action="#{activityController.removeActivity}" value="Remove this activity" >
+			<f:setPropertyActionListener value="#{superController.currentActivity.id}" target="#{activityController.id}"/>
+		</h:commandLink>
+	</h:form>
 </div>
 <div>
 <h:outputLink value="member.jsp" >

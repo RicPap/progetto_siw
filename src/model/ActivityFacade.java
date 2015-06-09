@@ -27,6 +27,10 @@ public class ActivityFacade {
 		return a;
 	}
 	
+	public void removeActivity(Long id) {
+		em.remove(em.find(Activity.class, id));
+	}
+	
 	public Activity getActivity(Long id) {
 		Activity a = em.find(Activity.class,id);
 		return a;

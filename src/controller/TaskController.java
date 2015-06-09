@@ -77,6 +77,11 @@ public class TaskController {
 		return "task";
 	}
 	
+	public String removeTask() {
+		this.taskFacade.removeTask(this.id);
+		return "member";
+	}
+	
 	public String findTargetMember() {
 		Member target = taskFacade.findTargetMember(targetId);
 		superC.setCurrentMember(target);

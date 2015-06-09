@@ -33,8 +33,15 @@
 </h:form>
 </div>
 <div>
+<div>
+	<h:form>
+		<h:commandLink action="#{taskController.removeTask}" value="Remove this task" >
+			<f:setPropertyActionListener value="#{superController.currentTask.id}" target="#{taskController.id}"/>
+		</h:commandLink>
+	</h:form>
+</div>
 <h:outputLink value="member.jsp" >
-	<h:outputText value="Back to yuor personal page" />
+	<h:outputText value="Back to your personal page" />
 </h:outputLink>
 </div>
 </f:view>
