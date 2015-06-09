@@ -1,18 +1,21 @@
-package controller;
+ package controller;
 
 import java.util.Date;
 
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 
+import model.Activity;
+import model.GroupActivity;
+import model.IndividualActivity;
+import model.Member;
 import model.Task;
 import model.TaskFacade;
 
-@ManagedBean
 public class TaskController {
 	
 	@EJB(beanName="taskFacade")
 	private TaskFacade taskFacade;
+	private Long id;
 	private String name;
 	private String description;
 	private Date expiration;
@@ -20,10 +23,64 @@ public class TaskController {
 	private Date completionDate;
 	private boolean isComplete;
 	private Task task;
+	private Long targetId;
+	private SuperController superC;
+	
+	public String createTargetTask() {
+		Activity creatorActivity = superC.getCurrentActivity();
+		Member target = taskFacade.findTargetMember(targetId);
+		this.task = taskFacade.createTask(name, description, expiration, target, creatorActivity);
+		if(target.equals(superC.getCurrentMember())) {
+			superC.getUnDoneTask().add(task);
+			target.getToDoTask().add(task);
+		}
+		if(creatorActivity.getClass().equals(IndividualActivity.class)) {
+			return "individualActivity";
+		}
+		return "groupActivity";
+	}
+	public String setTaskCompletition() {
+		Activity creatorActivity = superC.getCurrentActivity();
+		this.task = taskFacade.getTask(targetId);
+		task.setIsComplete(true);
+		task.setCompletionDate(new Date());
+		superC.getUnDoneTask().remove(task);
+		taskFacade.upadateTask(task);
+		superC.getDoneTask().add(task);
+		if(creatorActivity.getClass().equals(GroupActivity.class))
+			return "groupActivity";
+		return "individualActivity";
+	}
 	
 	public String createIndividualTask() {
-		this.task = taskFacade.createTask(name, description, expiration);
+		Activity creatorActivity = superC.getCurrentActivity();
+		Member target = superC.getCurrentMember();
+		this.task = taskFacade.createTask(name, description, expiration, target, creatorActivity);
+		target.getToDoTask().add(task);
+		superC.getUnDoneTask().add(task);
+		if(creatorActivity.getClass().equals(IndividualActivity.class)) {
+			return "individualActivity";
+		}
+		return "groupActivity";
+	}
+	
+	public String getCreator() {
+		Activity a = superC.getCurrentTask().getActivityCreator();
+		if(a.getClass().equals(IndividualActivity.class))
+			return "individualActivity.jsp";
+		return "groupActivity.jsp";
+	}
+	
+	public String findTask() {
+		this.task = taskFacade.getTask(id);
+		superC.setCurrentTask(task);
 		return "task";
+	}
+	
+	public String findTargetMember() {
+		Member target = taskFacade.findTargetMember(targetId);
+		superC.setCurrentMember(target);
+		return "member";
 	}
 
 	public String getName() {
@@ -76,5 +133,29 @@ public class TaskController {
 
 	public Date getCreationDate() {
 		return creationDate;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getTargetId() {
+		return targetId;
+	}
+
+	public void setTargetId(Long targetId) {
+		this.targetId = targetId;
+	}
+
+	public SuperController getSuperC() {
+		return superC;
+	}
+
+	public void setSuperC(SuperController superC) {
+		this.superC = superC;
 	}
 }

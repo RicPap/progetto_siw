@@ -1,22 +1,22 @@
 package controller;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 
 import model.Activity;
 import model.ActivityFacade;
+import model.IndividualActivity;
 import model.Member;
+import model.Task;
 
-@ManagedBean(name = "activityController")
-@RequestScoped
 public class ActivityController {
 
 	@EJB(beanName="activityFacade")
 	private ActivityFacade activityFacade;
+	private Long id;
 	private String name;
 	private String description;
 	private Date expiration;
@@ -24,17 +24,44 @@ public class ActivityController {
 	private Date completionDate;
 	private boolean isComplete;
 	private Activity activity;
-	@ManagedProperty(value = "#{memberController.member}")
-	private Member currentMember;
+	private SuperController superC;
 	
 	public String createIndividualActivity() {
+		Member currentMember = superC.getCurrentMember();
 		this.activity = activityFacade.createIndividualActivity(name, description, expiration, currentMember);
+		currentMember.getMyActivities().add(activity);
 		return "member";
 	}
 	
 	public String createGroupActivity() {
+		Member currentMember = superC.getCurrentMember();
 		this.activity = activityFacade.createGroupActivity(name, description, expiration, currentMember);
+		currentMember.getMyActivities().add(activity);
 		return "member";
+	}
+	
+	public String findActivity() {
+		Member currentMember = superC.getCurrentMember();
+		this.activity = activityFacade.getActivity(id);
+		List<Task> undone = new LinkedList<Task>();
+		List<Task> done = new LinkedList<Task>();
+		done.addAll(activityFacade.findDoneTask(activity));
+		undone.addAll(activityFacade.findUnDoneTask(activity));
+		superC.setUnDoneTask(undone);
+		superC.setDoneTask(done);
+		superC.setCurrentActivity(activity);
+		if(activity.getClass().equals(IndividualActivity.class)) {
+			return "individualActivity";
+		}
+		else {
+			List<Member> entry = new LinkedList<Member>();
+			entry.addAll(activityFacade.findMember2Activity(currentMember, activity));
+			if(entry.isEmpty()) {
+				return "debug";
+			}
+			superC.setActivityGroup(entry);
+			return "groupActivity";
+		}
 	}
 
 	public String getName() {
@@ -89,11 +116,19 @@ public class ActivityController {
 		return creationDate;
 	}
 
-	public Member getCurrentMember() {
-		return currentMember;
+	public Long getId() {
+		return id;
 	}
 
-	public void setCurrentMember(Member currentMember) {
-		this.currentMember = currentMember;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public SuperController getSuperC() {
+		return superC;
+	}
+
+	public void setSuperC(SuperController superC) {
+		this.superC = superC;
 	}
 }

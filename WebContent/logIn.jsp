@@ -23,10 +23,19 @@
                      	id="pwd"/> <h:message for="pwd" />
 	<div><h:outputText value="Email or Password incorrect" rendered="#{!memberController.passCorrect}"></h:outputText>
 	</div>
-		<h:commandButton value="Submit" action="#{memberController.logIn}"/>
+		<h:commandButton value="Submit" action="#{memberController.logIn}">
+		</h:commandButton>
 	</div>
-	<div><a href='<c:url value="/faces/newMember.jsp" />'>Register a new user</a></div>
-	<div><a href='<c:url value="/faces/index.jsp" />'>Back to the homepage</a></div>
+	<div>
+			<h:outputLink value="newMember.jsp">
+    			<h:outputText value="Register a new user" />
+			</h:outputLink>
+	</div>
+	<div>
+			<h:outputLink value="index.jsp">
+    			<h:outputText value="Back to the homepage" />
+			</h:outputLink>
+	</div>
 </h:form>
 </f:view>
 </body>

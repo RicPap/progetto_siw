@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,28 +38,27 @@ public class Task {
 	private Date completionDate;
 	
 	@Column(nullable = true)
-	boolean isComplete;
+	Boolean isComplete;
 	
 	@ManyToOne
+	@JoinColumn(name="activity_creator")
 	private Activity activityCreator;
 	
 	@ManyToOne
-	private Member userCreator;
+	@JoinColumn(name="assign_to")
+	private Member pushTo;
 	
 	//Costruttore
 	public Task()  {}
 	
-	public Task(String name,String description,Date expiration) {
+	public Task(String name,String description,Date expiration,Member assignTo,Activity createdBy) {
 		this.name = name;
 		this.description = description;
 		this.isComplete = false;
 		this.expiration = expiration;
 		this.creationDate = new Date();
-	}
-	
-	public Task(String name, String description, Date expiration, Member assignTo) {
-		this(name,description,expiration);
-		this.userCreator = assignTo;
+		this.pushTo = assignTo;
+		this.activityCreator = createdBy;
 	}
 	
 	//Metodi
@@ -106,15 +106,54 @@ public class Task {
 		this.activityCreator = activityCreator;
 	}
 
-	public Member getUserCreator() {
-		return userCreator;
-	}
-
-	public void setUserCreator(Member userCreator) {
-		this.userCreator = userCreator;
-	}
-
 	public Long getId() {
 		return id;
+	}
+
+	public Member getPushTo() {
+		return pushTo;
+	}
+
+	public void setPushTo(Member pushTo) {
+		this.pushTo = pushTo;
+	}
+
+	public Boolean getIsComplete() {
+		return isComplete;
+	}
+
+	public void setIsComplete(Boolean isComplete) {
+		this.isComplete = isComplete;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Task other = (Task) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}	
 }

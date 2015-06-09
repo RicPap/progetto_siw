@@ -13,10 +13,14 @@
 	<f:view>
 		<h1>ActivityTask</h1>
 			<div>If you still don't have an account, register now!
-			<a href='<c:url value="/faces/newMember.jsp" />'>Create a new user</a>
+			<h:outputLink value="newMember.jsp">
+    			<h:outputText value="Create a new user" />
+			</h:outputLink>
 			</div>
 			<div>If you have an account, please sign in.
-			<a href='<c:url value="/faces/logIn.jsp" />'>Sign in</a>
+			<h:outputLink value="logIn.jsp">
+    			<h:outputText value="Sign in" />
+			</h:outputLink>
 			</div>
 	</f:view>
 </body>

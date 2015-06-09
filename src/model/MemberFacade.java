@@ -44,4 +44,20 @@ public class MemberFacade {
 		List<Member> users = query.getResultList();
 		return users;
 	}
+	
+	public List<Activity> findAllActivities(Member currentMember) {
+		Query query = em.createNamedQuery("findAllActivities");
+		query.setParameter("id",currentMember.getId());
+        @SuppressWarnings("unchecked")
+		List<Activity> activities = query.getResultList();
+		return activities;
+	}
+
+	public List<Task> findAllTask(Member member) {
+		Query query = em.createNamedQuery("findAllTask");
+		query.setParameter("id", member.getId());
+		@SuppressWarnings("unchecked")
+		List<Task> tasks = query.getResultList();
+		return tasks;
+	}
 }

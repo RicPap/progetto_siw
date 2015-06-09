@@ -8,20 +8,35 @@
 </head>
 <body>
 <f:view>
-<h1>${taskController.task.name}</h1>
+<h1>${superController.currentTask.name}</h1>
 <h2>Details</h2>
-<div>Name: ${taskController.task.name}</div>
-<div>Description: ${taskController.task.description}</div>
-<div>Expiration: ${taskController.task.expiration}</div>
-<div>Creation date: ${taskController.task.creationDate}</div>
-<div>RegistrationDate: ${memberController.member.registrationDate}</div>
+<div>Name: ${superController.currentTask.name}</div>
+<div>Description: ${superController.currentTask.description}</div>
 <div>
-	<h:commandLink action="#{taskController.getCreator}" value="#{task.getCreator.name}">
+	<h:outputText value="Expiration: "/>
+	<h:outputText value="#{superController.currentTask.expiration}" >
+    	<f:convertDateTime type="both" dateStyle="medium" locale="en"/>
+	</h:outputText>
+</div>
+<div>
+	<h:outputText value="CreationDate: "/>
+	<h:outputText value="#{superController.currentTask.creationDate}" >
+    	<f:convertDateTime type="both" dateStyle="medium" locale="en"/>
+	</h:outputText>
+</div><br/>
+<div>
+<h:form>
+	<h:outputText value="This task belongs to this activity: "/>
+	<h:commandLink action="#{taskController.getCreator}" value="#{superController.currentTask.activityCreator.name}">
 			<f:param name="id" value="#{task.id}" />
 	</h:commandLink>
+</h:form>
 </div>
-<a href='<c:url value="/faces/member.jsp" />'>Back to your personal page</a>
-
+<div>
+<h:outputLink value="member.jsp" >
+	<h:outputText value="Back to yuor personal page" />
+</h:outputLink>
+</div>
 </f:view>
 </body>
 </html>

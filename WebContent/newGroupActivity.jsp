@@ -22,12 +22,12 @@
     </div>
     <div>Expires: <h:inputText value="#{activityController.expiration}"
                      required="false">
-                     <f:convertDateTime pattern="ddMMyyyy" /> 
+                     <f:convertDateTime pattern="dd-MM-yyyy hh.mm" type="date" dateStyle="long"/>
                   </h:inputText>
                      
 	</div>   
 	<div>
-		<h:commandButton value="Submit"  action="#{activityController.createGroupActivity}"/>
+		<h:commandButton value="Submit"  action="#{activityController.createGroupActivity}" />
 	</div>
 </h:form>
 </f:view>

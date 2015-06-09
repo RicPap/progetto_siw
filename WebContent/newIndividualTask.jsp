@@ -1,32 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII"%>
 <%@ taglib prefix="f"  uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h"  uri="http://java.sun.com/jsf/html"%>
-<!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>New Individual Activity</title>
+<title>New Task</title>
 </head>
 <body>
 <f:view>
 <h:form>
-    <div>Name: <h:inputText value="#{activityController.name}" 
+    <div>Name: <h:inputText value="#{taskController.name}" 
                      required="true"
                      requiredMessage="Name is mandatory"
                      id="name"/> <h:message for="name" />
 	</div>
-	<div>Description: <h:inputTextarea value="#{activityController.description}" 
+	<div>Description: <h:inputTextarea value="#{taskController.description}" 
     				required="false" 
     				cols="20" 
     				rows="5" /> 
     </div>
-    <div>Expires: <h:inputText value="#{activityController.expiration}"
+    <div>Expires: <h:inputText value="#{taskController.expiration}"
                      required="false">
                     <f:convertDateTime pattern="dd-MM-yyyy hh.mm" type="date" dateStyle="long"/>
                   </h:inputText>
-	</div>   
+	</div>
 	<div>
-		<h:commandButton value="Submit"  action="#{activityController.createIndividualActivity}" />
+		<h:commandButton value="Submit"  action="#{taskController.createIndividualTask}" />
 	</div>
 </h:form>
 </f:view>

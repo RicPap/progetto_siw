@@ -8,45 +8,62 @@
 </head>
 <body>
 <f:view>
-<h1>${memberController.member.nickName}</h1>
+<h1>${superController.currentMember.nickName}</h1>
 <h2>Details</h2>
-<div>Name: ${memberController.member.name}</div>
-<div>Lastname: ${memberController.member.lastName}</div>
-<div>Email: ${memberController.member.email}</div>
-<div>Birthday: ${memberController.member.birthDay}</div>
-<div>RegistrationDate: ${memberController.member.registrationDate}</div>
-<h2> My Activities </h2>
-<!--
+<div>Name: ${superController.currentMember.name}</div>
+<div>Lastname: ${superController.currentMember.lastName}</div>
+<div>Email: ${superController.currentMember.email}</div>
+<div>
+	<h:outputText value="Birthday: "/>
+	<h:outputText value="#{superController.currentMember.birthDay}" >
+    	<f:convertDateTime type="date" dateStyle="medium" locale="en"/>
+	</h:outputText>
+</div>
+<div>
+	<h:outputText value="Registration date: "/>
+	<h:outputText value="#{superController.currentMember.registrationDate}" >
+    	<f:convertDateTime type="both" dateStyle="medium" locale="en"/>
+	</h:outputText>
+</div><br/>
+<h:form>
+<div> <h:outputText value="My personal Activities:" rendered="#{superController.verifyActivity()}"></h:outputText> </div>
 <ul>
-<c:forEach var="elem" items="">
+<c:forEach var="activity" items="#{superController.currentMember.myActivities}">
 	<li>
-	<h:commandLink action="#{memberController.findMyActivity}" value="#{activity.name}">
-			<f:param name="id" value="#{activity.id}" />
+		<h:outputText value="Activity name: "/>
+		<h:commandLink action="#{activityController.findActivity}" value="#{activity.name}">
+			<f:setPropertyActionListener value="#{activity.id}" target="#{activityController.id}"/>
 		</h:commandLink>
 	</li>
 </c:forEach>
 </ul>
-<h2> My Tasks </h2>
+<div> <h:outputText value="My Tasks:" rendered="#{superController.verifyTask()}"></h:outputText> </div>
 <ul>
-<c:forEach var="elem" items="">
+<c:forEach var="task" items="#{superController.currentMember.toDoTask}">
 	<li>
-	<h:commandLink action="#{taskController.findTask}" value="#{task.name}">
-			<f:param name="id" value="#{task.id}" />
-	</h:commandLink>
+		<h:outputText value="Task name: "/>
+		<h:commandLink action="#{taskController.findTask}" value="#{task.name}">
+			<f:setPropertyActionListener value="#{task.id}" target="#{taskController.id}"/>
+		</h:commandLink>
 	</li>
 </c:forEach>
 </ul>
--->
 <div>
-<a href='<c:url value="/faces/newIndividualActivity.jsp" />'>
-Create a new Individual Activity</a>
+<h:outputLink value="newIndividualActivity.jsp">
+    <h:outputText value="Create new individual activity" />
+</h:outputLink>
 </div>
-
 <div>
-<a href='<c:url value="/faces/newGroupActivity.jsp" />'>
-Create a new Group Activity</a>
+<h:outputLink value="newGroupActivity.jsp">
+    <h:outputText value="Create new group activity" />
+</h:outputLink>
 </div>
-
+<div>
+<h:outputLink value="index.jsp">
+    <h:outputText value="Log out" />
+</h:outputLink>
+</div>
+</h:form>
 </f:view>
 </body>
 </html>

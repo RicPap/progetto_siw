@@ -18,7 +18,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "findAllMember", query = "SELECT m FROM Member m"),
-		@NamedQuery(name = "findMemberByEmail", query = "SELECT m FROM Member m where m.email = :email")})
+		@NamedQuery(name = "findMemberByEmail", query = "SELECT m FROM Member m where m.email = :email"),
+		@NamedQuery(name = "findAllActivities", query = "SELECT a FROM Activity a where a.userCreator.id = :id"),
+		@NamedQuery(name = "findAllTask", query = "SELECT t FROM Task t where t.pushTo.id = :id"),
+		@NamedQuery(name = "findMemberById", query = "SELECT m FROM Member m where m.id = :id")})
 public class Member {
 	
 	@Id
@@ -51,7 +54,7 @@ public class Member {
 	@OneToMany(mappedBy="userCreator",fetch=FetchType.EAGER)
 	private List<Activity> myActivities;
 	
-	@OneToMany(mappedBy="userCreator")
+	@OneToMany(mappedBy="pushTo",fetch=FetchType.EAGER)
 	private List<Task> toDoTask;
 	
 	//Costruttore
@@ -67,6 +70,7 @@ public class Member {
 		this.registrationDate = new Date();
 		this.birthDay = birth;
 		this.myActivities = new LinkedList<Activity>();
+		this.toDoTask = new LinkedList<Task>();
 	}
 	
 	//Metodi

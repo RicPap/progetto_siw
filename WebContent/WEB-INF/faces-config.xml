@@ -5,11 +5,21 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
     version="2.1">
-    
-    <managed-bean>
+
+<managed-bean>
+    <managed-bean-name>superController</managed-bean-name>
+    <managed-bean-class>controller.SuperController</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+
+<managed-bean>
     <managed-bean-name>memberController</managed-bean-name>
     <managed-bean-class>controller.MemberController</managed-bean-class>
-    <managed-bean-scope>session</managed-bean-scope>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property>
+     <property-name>superC</property-name>
+     <value>#{superController}</value>
+    </managed-property>
 </managed-bean>
 
 <managed-bean>
@@ -17,8 +27,18 @@
     <managed-bean-class>controller.ActivityController</managed-bean-class>
     <managed-bean-scope>request</managed-bean-scope>
     <managed-property>
-     <property-name>currentMember</property-name>
-     <value>#{memberController.member}</value>
+     <property-name>superC</property-name>
+     <value>#{superController}</value>
+    </managed-property>
+</managed-bean>
+
+<managed-bean>
+    <managed-bean-name>taskController</managed-bean-name>
+    <managed-bean-class>controller.TaskController</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property>
+     <property-name>superC</property-name>
+     <value>#{superController}</value>
     </managed-property>
 </managed-bean>
 

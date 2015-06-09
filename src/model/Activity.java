@@ -1,10 +1,28 @@
 package model;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "findUndoneTask", query = "SELECT t FROM Task t where t.activityCreator.id = :id"
+		+ " and t.isComplete = false"),
+				@NamedQuery(name = "findDoneTask", query = "SELECT t FROM Task t where t.activityCreator.id = :id"
+				+ " and t.isComplete = true")})
 public abstract class Activity {
 	
 	@Id
@@ -34,7 +52,12 @@ public abstract class Activity {
 	boolean isComplete;
 	
 	@ManyToOne
+	@JoinColumn(name="creator")
 	private Member userCreator;
+	
+	@OneToMany(mappedBy="activityCreator",fetch=FetchType.LAZY)
+	private List<Task> inTask;
+	
 	
 	//Costruttore
 	public Activity() { }
@@ -46,6 +69,7 @@ public abstract class Activity {
 		this.expiration = expiration;
 		this.creationDate = new Date();
 		this.userCreator = creator;
+		this.inTask = new LinkedList<Task>();
 	}
 	
 	//Metodi
@@ -112,5 +136,13 @@ public abstract class Activity {
 
 	public void setUserCreator(Member userCreator) {
 		this.userCreator = userCreator;
+	}
+
+	public List<Task> getInTask() {
+		return inTask;
+	}
+
+	public void setInTask(List<Task> inTask) {
+		this.inTask = inTask;
 	}
 }

@@ -4,21 +4,15 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 
 import model.Member;
 import model.MemberFacade;
 
-@ManagedBean(name="memberController")
-@SessionScoped
 public class MemberController {
 	
 	@EJB(beanName="memberFacade")
 	private MemberFacade memberFacade;
 	
-	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	private String name;
 	private String lastName;
@@ -30,6 +24,7 @@ public class MemberController {
 	private Member member;
 	private boolean passCorrect = true;
 	private List<Member> members;
+	private SuperController superC;
 	
 	public String createMember() {
 		this.member = memberFacade.createMember(name, lastName,nickName, email, password,birthDay);
@@ -40,6 +35,7 @@ public class MemberController {
 		this.member = memberFacade.getMember(this.email);
 		if (this.member != null) {
 			if (this.member.validatePwd(this.password)) {
+				superC.setCurrentMember(member);
 				return "member";
 			}
 		}
@@ -143,5 +139,13 @@ public class MemberController {
 
 	public void setPassCorrect(boolean isPassCorrect) {
 		this.passCorrect = isPassCorrect;
+	}
+
+	public SuperController getSuperC() {
+		return superC;
+	}
+
+	public void setSuperC(SuperController superC) {
+		this.superC = superC;
 	}
 }
