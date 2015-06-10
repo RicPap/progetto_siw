@@ -50,7 +50,7 @@ public abstract class Activity {
 	private Date completionDate;
 	
 	@Column(nullable = true)
-	boolean isComplete;
+	Boolean isComplete;
 	
 	@ManyToOne
 	@JoinColumn(name="creator")
@@ -123,14 +123,6 @@ public abstract class Activity {
 		this.completionDate = completionDate;
 	}
 
-	public boolean isComplete() {
-		return isComplete;
-	}
-
-	public void setComplete(boolean isComplete) {
-		this.isComplete = isComplete;
-	}
-
 	public Member getUserCreator() {
 		return userCreator;
 	}
@@ -147,12 +139,19 @@ public abstract class Activity {
 		this.inTask = inTask;
 	}
 
+	public Boolean getIsComplete() {
+		return isComplete;
+	}
+
+	public void setIsComplete(Boolean isComplete) {
+		this.isComplete = isComplete;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -170,13 +169,6 @@ public abstract class Activity {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
 		return true;
 	}
-
-	
 }

@@ -1,10 +1,10 @@
 package controller;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.ejb.EJB;
 
+import model.GroupActivity;
 import model.Member;
 import model.MemberFacade;
 
@@ -23,7 +23,6 @@ public class MemberController {
 	private Date registrationDate;
 	private Member member;
 	private boolean passCorrect = true;
-	private List<Member> members;
 	private SuperController superC;
 	
 	public String createMember() {
@@ -43,9 +42,16 @@ public class MemberController {
 		return "logIn";
 	}
 	
-	public String listMembers() {
-		this.members = memberFacade.getAllMembers();
-		return "allMembers";
+	public String addMembersToActivity() {
+		GroupActivity currentActivity = (GroupActivity) (superC.getCurrentActivity());
+		Long[] EntryId = superC.getEntryId();
+		for(Long ids : EntryId) {
+			Member m = memberFacade.getMember(ids);
+			superC.getActivityGroup().add(m);
+			currentActivity.getUserGroup().add(m);
+		}
+		memberFacade.upDateActivity(currentActivity);
+		return "groupActivity";
 	}
 
 	public Long getId() {
@@ -118,14 +124,6 @@ public class MemberController {
 
 	public void setMember(Member user) {
 		this.member = user;
-	}
-
-	public List<Member> getMembers() {
-		return members;
-	}
-
-	public void setMembers(List<Member> users) {
-		this.members = users;
 	}
 	
 	public String findMember() {

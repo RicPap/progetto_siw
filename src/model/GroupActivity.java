@@ -11,8 +11,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQueries({@NamedQuery(name = "findMember2Activity", query = "SELECT m FROM Member m,Activity a"
-		+ " where m.id = :mid and a.id = :aid")})
+@NamedQueries({@NamedQuery(name = "findMember2Activity", query = "SELECT m FROM Member m,GroupActivity a"
+		+ " where m.id = a.UserGroup.id and m.id = :mid and a.id = :aid")})
 public class GroupActivity extends Activity {
 	
 	@ManyToMany(fetch = FetchType.LAZY)

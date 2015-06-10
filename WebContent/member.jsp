@@ -34,18 +34,25 @@
 		<h:commandLink action="#{activityController.findActivity}" value="#{activity.name}">
 			<f:setPropertyActionListener value="#{activity.id}" target="#{activityController.id}"/>
 		</h:commandLink>
+		<h:outputText value="(completed)" rendered="#{activity.getIsComplete()}"/>
+		<h:commandButton action="#{activityController.setActivityCompletition}" value="complete"
+			rendered="#{!activity.getIsComplete()}">
+			<f:setPropertyActionListener value="#{activity.id}" target="#{activityController.id}"/>
+		</h:commandButton>
 	</li>
 </c:forEach>
 </ul>
 <div> <h:outputText value="My Tasks:" rendered="#{superController.verifyTask()}"></h:outputText> </div>
 <ul>
 <c:forEach var="task" items="#{superController.currentMember.toDoTask}">
+	<c:if test="${!task.getIsComplete()}">
 	<li>
 		<h:outputText value="Task name: "/>
 		<h:commandLink action="#{taskController.findTask}" value="#{task.name}">
 			<f:setPropertyActionListener value="#{task.id}" target="#{taskController.id}"/>
 		</h:commandLink>
 	</li>
+	</c:if>
 </c:forEach>
 </ul>
 <div>

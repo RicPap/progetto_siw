@@ -31,9 +31,6 @@
 <ul>
 <c:forEach var="task" items="#{superController.unDoneTask}">
 	<li>
-		<h:commandLink action="#{taskController.setTaskCompletition}" value="X">
-			<f:setPropertyActionListener value="#{task.id}" target="#{taskController.targetId}"/>
-		</h:commandLink>
 		<h:outputText value="Task name: "/>
 		<h:commandLink action="#{taskController.findTask}" value="#{task.name}">
 			<f:setPropertyActionListener value="#{task.id}" target="#{taskController.id}"/>
@@ -42,6 +39,9 @@
 		<h:commandLink action="#{taskController.findTargetMember}" value="#{task.pushTo.nickName}">
 			<f:setPropertyActionListener value="#{task.pushTo.id}" target="#{taskController.targetId}"/>
 		</h:commandLink>
+		<h:commandButton action="#{taskController.setTaskCompletition}" value="V">
+			<f:setPropertyActionListener value="#{task.id}" target="#{taskController.targetId}"/>
+		</h:commandButton>
 	</li>
 </c:forEach>
 </ul>
@@ -63,12 +63,12 @@
 </div>
 </h:form>
 <div>
-<h:outputLink value="newTargetTask.jsp" >
+<h:outputLink value="newTargetTask.jsp" rendered="#{superController.veryActivityCompletition()}">
 	<h:outputText value="Create new target task" />
 </h:outputLink>
 </div>
 <div>
-<h:outputLink value="newIndividualTask.jsp" >
+<h:outputLink value="newIndividualTask.jsp" rendered="#{superController.veryActivityCompletition()}">
 	<h:outputText value="Create new individual task" />
 </h:outputLink>
 </div>
@@ -78,6 +78,16 @@
 			<f:setPropertyActionListener value="#{superController.currentActivity.id}" target="#{activityController.id}"/>
 		</h:commandLink>
 	</h:form>
+</div>
+<div>
+<h:outputLink value="editActivity.jsp" rendered="#{superController.veryActivityCompletition()}">
+	<h:outputText value="Edit Activity" />
+</h:outputLink>
+</div>
+<div>
+<h:outputLink value="addNewMember.jsp" rendered="#{superController.veryActivityCompletition()}">
+	<h:outputText value="Add members to your activity" />
+</h:outputLink>
 </div>
 <div>
 <h:outputLink value="member.jsp" >

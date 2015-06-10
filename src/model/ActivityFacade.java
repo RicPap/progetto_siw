@@ -60,4 +60,15 @@ public class ActivityFacade {
 		List<Task> tasks = query.getResultList();
 		return tasks;
 	}
+
+	public void upDateActivity(Activity currentActivity) {
+		em.merge(currentActivity);
+	}
+
+	public Collection<Member> findAllMembers() {
+		Query query = em.createNamedQuery("findAllMember");
+        @SuppressWarnings("unchecked")
+		List<Member> users = query.getResultList();
+		return users;
+	}
 }

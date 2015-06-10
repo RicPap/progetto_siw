@@ -40,6 +40,9 @@
 		</h:commandLink>
 	</h:form>
 </div>
+<h:outputLink value="task.jsp" rendered="#{superController.veryTaskCompletition()}">
+	<h:outputText value="Edit task" />
+</h:outputLink>
 <h:outputLink value="member.jsp" >
 	<h:outputText value="Back to your personal page" />
 </h:outputLink>

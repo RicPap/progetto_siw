@@ -40,13 +40,22 @@ public class TaskController {
 		}
 		return "groupActivity";
 	}
+	
+	public String updateTask() {
+		Task currentTask = superC.getCurrentTask();
+		superC.getUnDoneTask().remove(currentTask);
+		taskFacade.updateTask(currentTask);
+		superC.getUnDoneTask().add(currentTask);
+		return "task";
+	}
+ 	
 	public String setTaskCompletition() {
 		Activity creatorActivity = superC.getCurrentActivity();
 		this.task = taskFacade.getTask(targetId);
 		task.setIsComplete(true);
 		task.setCompletionDate(new Date());
 		superC.getUnDoneTask().remove(task);
-		taskFacade.upadateTask(task);
+		taskFacade.updateTask(task);
 		superC.getDoneTask().add(task);
 		if(creatorActivity.getClass().equals(GroupActivity.class))
 			return "groupActivity";

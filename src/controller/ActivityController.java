@@ -1,7 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,6 +34,17 @@ public class ActivityController {
 		return "member";
 	}
 	
+	public String upDateActivity() {
+		Member currentMember = superC.getCurrentMember();
+		Activity currentActivity = superC.getCurrentActivity();
+		currentMember.getMyActivities().remove(currentActivity);
+		activityFacade.upDateActivity(currentActivity);
+		currentMember.getMyActivities().add(currentActivity);
+		if(currentActivity.getClass().equals(IndividualActivity.class))
+			return "individualActivity";
+		return "groupActivity";
+	}
+	
 	public String createGroupActivity() {
 		Member currentMember = superC.getCurrentMember();
 		this.activity = activityFacade.createGroupActivity(name, description, expiration, currentMember);
@@ -63,20 +74,34 @@ public class ActivityController {
 		superC.setUnDoneTask(undone);
 		superC.setDoneTask(done);
 		superC.setCurrentActivity(activity);
-		if(activity.getClass().equals(IndividualActivity.class)) {
+		if(activity.getClass().equals(IndividualActivity.class))
 			return "individualActivity";
-		}
 		else {
+			List<Member> allmembers = new ArrayList<Member>();
 			List<Member> entry = new LinkedList<Member>();
+			allmembers.addAll(activityFacade.findAllMembers());
+			superC.setEntryId(new Long[allmembers.size()]);
 			entry.addAll(activityFacade.findMember2Activity(currentMember, activity));
 			if(entry.isEmpty()) {
 				return "debug";
 			}
 			superC.setActivityGroup(entry);
+			superC.setAllMember(allmembers);
 			return "groupActivity";
 		}
 	}
-
+	
+	public String setActivityCompletition() {
+		Member currentMember = superC.getCurrentMember();
+		this.activity = activityFacade.getActivity(this.id);
+		activity.setIsComplete(true);
+		activity.setCompletionDate(new Date());
+		currentMember.getMyActivities().remove(activity);
+		activityFacade.upDateActivity(activity);
+		currentMember.getMyActivities().add(activity);
+		return "member";
+	}
+	
 	public String getName() {
 		return name;
 	}

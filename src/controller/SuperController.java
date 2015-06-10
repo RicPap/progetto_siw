@@ -13,6 +13,8 @@ public class SuperController {
 	private List<Member> activityGroup;
 	private List<Task> unDoneTask;
 	private List<Task> doneTask;
+	private List<Member> allMember;
+	private Long[] entryId;
 	
 	public Member getCurrentMember() {
 		return currentMember;
@@ -82,5 +84,29 @@ public class SuperController {
 	}
 	public void setDoneTask(List<Task> doneTask) {
 		this.doneTask = doneTask;
+	}
+	public List<Member> getAllMember() {
+		return allMember;
+	}
+	public void setAllMember(List<Member> allMember) {
+		this.allMember = allMember;
+	}
+	public Long[] getEntryId() {
+		return entryId;
+	}
+	public void setEntryId(Long[] entryId) {
+		this.entryId = entryId;
+	}
+	
+	public boolean veryActivityCompletition() {
+		if(currentActivity.getIsComplete())
+			return false;
+		return true;
+	}
+	
+	public boolean veryTaskCompletition() {
+		if(currentTask.getIsComplete())
+			return false;
+		return true;
 	}
 }

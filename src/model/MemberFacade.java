@@ -20,8 +20,8 @@ public class MemberFacade {
 		return u;
 	}
 	
-	public Member getMember(Long id) {
-		Member u = em.find(Member.class, id);
+	public Member getMember(Long ids) {
+		Member u = em.find(Member.class, ids);
 		return u;
 	}
 	
@@ -36,13 +36,6 @@ public class MemberFacade {
 			u = null;
 		}
 		return u;
-	}
-
-	public List<Member> getAllMembers() {
-		Query query = em.createNamedQuery("findAllMember");
-        @SuppressWarnings("unchecked")
-		List<Member> users = query.getResultList();
-		return users;
 	}
 	
 	public List<Activity> findAllActivities(Member currentMember) {
@@ -59,5 +52,9 @@ public class MemberFacade {
 		@SuppressWarnings("unchecked")
 		List<Task> tasks = query.getResultList();
 		return tasks;
+	}
+
+	public void upDateActivity(GroupActivity currentActivity) {
+		em.merge(currentActivity);
 	}
 }

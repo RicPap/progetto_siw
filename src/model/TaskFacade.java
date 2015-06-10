@@ -32,7 +32,7 @@ public class TaskFacade {
 		return m;
 	}
 
-	public void upadateTask(Task task) {
+	public void updateTask(Task task) {
 		em.merge(task);
 	}
 }
