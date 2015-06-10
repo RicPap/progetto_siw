@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -51,10 +52,10 @@ public class Member {
 	@Temporal(TemporalType.DATE)
 	private Date birthDay;
 	
-	@OneToMany(mappedBy="userCreator",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="userCreator",fetch=FetchType.EAGER, cascade={CascadeType.REMOVE,CascadeType.REFRESH,CascadeType.MERGE})
 	private List<Activity> myActivities;
 	
-	@OneToMany(mappedBy="pushTo",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="pushTo",fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
 	private List<Task> toDoTask;
 	
 	//Costruttore

@@ -27,12 +27,13 @@ public class TaskController {
 	private SuperController superC;
 	
 	public String createTargetTask() {
+		Member currentMember = superC.getCurrentMember();
 		Activity creatorActivity = superC.getCurrentActivity();
 		Member target = taskFacade.findTargetMember(targetId);
 		this.task = taskFacade.createTask(name, description, expiration, target, creatorActivity);
-		if(target.equals(superC.getCurrentMember())) {
+		if(target.equals(currentMember)) {
 			superC.getUnDoneTask().add(task);
-			target.getToDoTask().add(task);
+			currentMember.getToDoTask().add(task);
 		}
 		if(creatorActivity.getClass().equals(IndividualActivity.class)) {
 			return "individualActivity";
@@ -78,6 +79,10 @@ public class TaskController {
 	}
 	
 	public String removeTask() {
+		Member currentMember = superC.getCurrentMember();
+		Task currentTask = taskFacade.getTask(this.id);
+		if (currentMember.equals(currentTask.getPushTo())) 
+			currentMember.getToDoTask().remove(currentTask);
 		this.taskFacade.removeTask(this.id);
 		return "member";
 	}

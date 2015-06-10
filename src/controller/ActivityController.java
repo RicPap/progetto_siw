@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,7 +42,13 @@ public class ActivityController {
 	}
 	
 	public String removeActivity() {
-		//this.activity = superC.getCurrentActivity();
+		Member currentMember = superC.getCurrentMember();
+		Activity currentActivity = activityFacade.getActivity(this.id);
+		currentMember.getMyActivities().remove(currentActivity);
+		for(Task t : currentActivity.getInTask()) {
+			if (t.getPushTo().equals(currentMember))
+				currentMember.getToDoTask().remove(t);
+		}
 		this.activityFacade.removeActivity(this.id);
 		return "member";
 	}

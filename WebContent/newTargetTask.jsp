@@ -21,7 +21,7 @@
     </div>
     <div>Expires: <h:inputText value="#{taskController.expiration}"
                      required="false">
-                    <f:convertDateTime pattern="dd-MM-yyyy hh.mm" type="date" dateStyle="long"/>
+                    <f:convertDateTime pattern="dd-MM-yyyy hh.mm aa" type="date" dateStyle="long"/>
                   </h:inputText>
 	</div>
 	<div>
