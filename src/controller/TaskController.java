@@ -49,7 +49,6 @@ public class TaskController {
 	}
  	
 	public String setTaskCompletition() {
-		Member currentMember = superC.getCurrentMember();
 		Activity creatorActivity = superC.getCurrentActivity();
 		this.task = taskFacade.getTask(targetId);
 		task.setIsComplete(true);
@@ -57,8 +56,7 @@ public class TaskController {
 		superC.getUnDoneTask().remove(task);
 		taskFacade.updateTask(task);
 		superC.getDoneTask().add(task);
-		if(currentMember.equals(task.getPushTo()))
-			currentMember.getToDoTask().remove(task);
+		task.getPushTo().getToDoTask().remove(task);
 		if(creatorActivity.getClass().equals(GroupActivity.class))
 			return "groupActivity";
 		return "individualActivity";
