@@ -17,6 +17,7 @@ public class SuperController {
 	private List<Member> allMember;
 	private Long[] entryId;
 	private boolean adding = false;
+	private boolean sameEmail = false;;
 	
 	public Member getCurrentMember() {
 		return currentMember;
@@ -123,5 +124,11 @@ public class SuperController {
 		if(currentActivity.getClass().equals(IndividualActivity.class))
 			return "individualActivity";
 		return "groupActivity";
+	}
+	public boolean isSameEmail() {
+		return sameEmail;
+	}
+	public void setSameEmail(boolean sameEmail) {
+		this.sameEmail = sameEmail;
 	}
 	}

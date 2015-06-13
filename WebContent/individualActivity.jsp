@@ -68,6 +68,14 @@
     	<f:convertDateTime type="both" dateStyle="medium" locale="it"/>
 		</h:outputText>
 		</p>
+		<c:if test="${superController.currentActivity.getIsComplete()}">
+		<p>
+		<h:outputText value="Completion date: "/>
+		<h:outputText value="#{superController.currentActivity.completionDate}" >
+    	<f:convertDateTime type="both" dateStyle="medium" locale="it"/>
+		</h:outputText>
+		</p>
+		</c:if>
       </div>
     </div>
     

@@ -71,6 +71,14 @@
     	<f:convertDateTime type="both" dateStyle="medium" locale="it"/>
 		</h:outputText>
 		</p>
+		<c:if test="${superController.currentTask.getIsComplete()}">
+		<p>
+		<h:outputText value="Completion date: "/>
+		<h:outputText value="#{superController.currentTask.completionDate}" >
+    	<f:convertDateTime type="both" dateStyle="medium" locale="it"/>
+		</h:outputText>
+		</p>
+		</c:if>
       </div>
     </div>
 </div>

@@ -68,6 +68,11 @@
                      id="psw"/> <h:message for="psw" styleClass="alert-danger"/>
 	</div>
 	<div>
+	<h:panelGroup layout="block" rendered="#{superController.sameEmail}" styleClass="alert alert-danger">
+    <h:outputText value="There is another account with same email" rendered="#{superController.sameEmail}"/>
+	</h:panelGroup>
+	</div>
+	<div>
 		<h:commandButton value="Submit"  action="#{memberController.createMember}"
 		styleClass="btn btn-lg btn-primary btn-block"/>
 	</div>

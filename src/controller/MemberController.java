@@ -26,8 +26,14 @@ public class MemberController {
 	private SuperController superC;
 	
 	public String createMember() {
-		this.member = memberFacade.createMember(name, lastName,nickName, email, password,birthDay);
-		return "logIn";
+		if(memberFacade.getMember(email)==null) {
+			this.member = memberFacade.createMember(name, lastName,nickName, email, password,birthDay);
+			superC.setSameEmail(false);
+			return "logIn";
+		}
+		else
+			superC.setSameEmail(true);
+			return "newMember";
 	}
 	
 	public String logIn() {
