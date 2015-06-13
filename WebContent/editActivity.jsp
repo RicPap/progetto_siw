@@ -4,31 +4,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="CSS/signin.css" type="text/css">
 <title>Edit Activity</title>
 </head>
 <body>
 <f:view>
-<h:form>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+         <h:outputText value="#{superController.currentMember.nickName}" styleClass="navbar-brand"/>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><h:outputLink value="member.jsp"
+           		styleClass="navbar-brand">
+    			<h:outputText value="Back to your personal page" />
+			</h:outputLink>
+			</li>
+          </ul>
+        </div>
+      </div>
+</nav>
+<div class="container">
+<h:form styleClass="form-signin">
+<h2 class="form-signin-heading">Edit activity</h2>
     <div>Name: <h:inputText value="#{superController.currentActivity.name}" 
                      required="true"
+                     styleClass="form-control"
                      requiredMessage="Name is mandatory"
-                     id="name"/> <h:message for="name" />
+                     id="name"/> <h:message for="name" styleClass="alert-danger"/>
 	</div>
-	<div>Description: <h:inputTextarea value="#{superController.currentActivity.description}" 
+	<div>Description: <h:inputTextarea value="#{superController.currentActivity.description}"
+					styleClass="form-control" 
     				required="false" 
     				cols="20" 
     				rows="5" /> 
     </div>
-    <div>Expires: <h:inputText value="#{superController.currentActivity.expiration}"
-                     required="false">
-                    <f:convertDateTime pattern="dd-MM-yyyy hh.mm" type="date" dateStyle="long"/>
+    <div>Expires: Expires: (correct format is dd-mm-yyyy HH.mm)<h:inputText value="#{superController.currentActivity.expiration}"
+    				styleClass="form-control"
+                    required="false">
+                    <f:convertDateTime pattern="dd-MM-yyyy HH.mm" type="date" dateStyle="long" locale="it"/>
                   </h:inputText>
-	</div>   
+	</div><br/>
 	<div>
-		<h:commandButton value="Submit"  action="#{activityController.upDateActivity}" />
+		<h:commandButton value="Submit"  action="#{activityController.upDateActivity}" 
+		styleClass="btn btn-lg btn-primary btn-block"/>
 	</div>
 </h:form>
+</div>
 </f:view>
 </body>
 </html>

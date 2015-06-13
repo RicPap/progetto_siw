@@ -47,10 +47,12 @@ public class MemberController {
 		Long[] EntryId = superC.getEntryId();
 		for(Long ids : EntryId) {
 			Member m = memberFacade.getMember(ids);
-			superC.getActivityGroup().add(m);
-			currentActivity.getUserGroup().add(m);
+			if(!superC.getActivityGroup().contains(m))
+				superC.getActivityGroup().add(m);
 		}
+		currentActivity.setUserGroup(superC.getActivityGroup());
 		memberFacade.upDateActivity(currentActivity);
+		superC.setAdding(false);
 		return "groupActivity";
 	}
 
@@ -127,8 +129,8 @@ public class MemberController {
 	}
 	
 	public String findMember() {
-		this.member = memberFacade.getMember(id);
-		return "member";
+		this.member = memberFacade.getMember(this.id);
+		return "infoMember";
 	}
 
 	public boolean isPassCorrect() {

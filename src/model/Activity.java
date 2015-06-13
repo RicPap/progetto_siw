@@ -38,7 +38,7 @@ public abstract class Activity {
 	private String description;
 	
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
 	@Column(nullable = true)  //non necessaria la scadenza
@@ -46,7 +46,7 @@ public abstract class Activity {
 	private Date expiration;
 	
 	@Column(nullable = true)  //non necessariamanete completato
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date completionDate;
 	
 	@Column(nullable = true)

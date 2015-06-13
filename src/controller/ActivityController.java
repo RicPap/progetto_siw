@@ -9,6 +9,7 @@ import javax.ejb.EJB;
 
 import model.Activity;
 import model.ActivityFacade;
+import model.GroupActivity;
 import model.IndividualActivity;
 import model.Member;
 import model.Task;
@@ -45,6 +46,13 @@ public class ActivityController {
 		return "groupActivity";
 	}
 	
+	public String backIn() {
+		Activity currentActivity = superC.getCurrentActivity();
+		if(currentActivity.getClass().equals(IndividualActivity.class))
+			return "individualActivity";
+		return "groupActivity";
+	}
+	
 	public String createGroupActivity() {
 		Member currentMember = superC.getCurrentMember();
 		this.activity = activityFacade.createGroupActivity(name, description, expiration, currentMember);
@@ -65,7 +73,6 @@ public class ActivityController {
 	}
 	
 	public String findActivity() {
-		Member currentMember = superC.getCurrentMember();
 		this.activity = activityFacade.getActivity(id);
 		List<Task> undone = new LinkedList<Task>();
 		List<Task> done = new LinkedList<Task>();
@@ -77,15 +84,11 @@ public class ActivityController {
 		if(activity.getClass().equals(IndividualActivity.class))
 			return "individualActivity";
 		else {
+			GroupActivity currentActivity = (GroupActivity)activity;
 			List<Member> allmembers = new ArrayList<Member>();
-			List<Member> entry = new LinkedList<Member>();
 			allmembers.addAll(activityFacade.findAllMembers());
 			superC.setEntryId(new Long[allmembers.size()]);
-			entry.addAll(activityFacade.findMember2Activity(currentMember, activity));
-			if(entry.isEmpty()) {
-				return "debug";
-			}
-			superC.setActivityGroup(entry);
+			superC.setActivityGroup(currentActivity.getUserGroup());
 			superC.setAllMember(allmembers);
 			return "groupActivity";
 		}

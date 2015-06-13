@@ -31,10 +31,9 @@ public class TaskController {
 		Activity creatorActivity = superC.getCurrentActivity();
 		Member target = taskFacade.findTargetMember(targetId);
 		this.task = taskFacade.createTask(name, description, expiration, target, creatorActivity);
-		if(target.equals(currentMember)) {
-			superC.getUnDoneTask().add(task);
+		superC.getUnDoneTask().add(task);
+		if(target.equals(currentMember))
 			currentMember.getToDoTask().add(task);
-		}
 		if(creatorActivity.getClass().equals(IndividualActivity.class)) {
 			return "individualActivity";
 		}
@@ -50,6 +49,7 @@ public class TaskController {
 	}
  	
 	public String setTaskCompletition() {
+		Member currentMember = superC.getCurrentMember();
 		Activity creatorActivity = superC.getCurrentActivity();
 		this.task = taskFacade.getTask(targetId);
 		task.setIsComplete(true);
@@ -57,6 +57,8 @@ public class TaskController {
 		superC.getUnDoneTask().remove(task);
 		taskFacade.updateTask(task);
 		superC.getDoneTask().add(task);
+		if(currentMember.equals(task.getPushTo()))
+			currentMember.getToDoTask().remove(task);
 		if(creatorActivity.getClass().equals(GroupActivity.class))
 			return "groupActivity";
 		return "individualActivity";
@@ -99,7 +101,7 @@ public class TaskController {
 	public String findTargetMember() {
 		Member target = taskFacade.findTargetMember(targetId);
 		superC.setCurrentMember(target);
-		return "member";
+		return "infoMember";
 	}
 
 	public String getName() {

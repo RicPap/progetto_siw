@@ -26,7 +26,7 @@ public class Task {
 	private String description;
 	
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
 	@Column(nullable = true)
@@ -34,7 +34,7 @@ public class Task {
 	private Date expiration;
 	
 	@Column(nullable = true)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date completionDate;
 	
 	@Column(nullable = true)

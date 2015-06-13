@@ -4,18 +4,19 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
 @Entity
-@NamedQueries({@NamedQuery(name = "findMember2Activity", query = "SELECT m FROM Member m,GroupActivity a"
-		+ " where m.id = a.UserGroup.id and m.id = :mid and a.id = :aid")})
 public class GroupActivity extends Activity {
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.EAGER,cascade={CascadeType.REMOVE,CascadeType.MERGE,CascadeType.REFRESH})
+	@JoinTable(name="member2activity", 
+	joinColumns={@JoinColumn(name="member_id")}, inverseJoinColumns={@JoinColumn(name="activity_id")})
 	private List<Member> UserGroup;
 	
 	public GroupActivity() {}

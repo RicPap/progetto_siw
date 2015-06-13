@@ -57,4 +57,9 @@ public class MemberFacade {
 	public void upDateActivity(GroupActivity currentActivity) {
 		em.merge(currentActivity);
 	}
+
+	public GroupActivity findActivity(Long id) {
+		GroupActivity a = em.find(GroupActivity.class,id);
+		return a;
+	}
 }

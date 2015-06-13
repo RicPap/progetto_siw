@@ -36,15 +36,6 @@ public class ActivityFacade {
 		return a;
 	}
 
-	public List<Member> findMember2Activity(Member currentMember, Activity activity) {
-		Query query = em.createNamedQuery("findMember2Activity");
-		query.setParameter("mid",currentMember.getId());
-		query.setParameter("aid",activity.getId());
-        @SuppressWarnings("unchecked")
-		List<Member> members = query.getResultList();
-		return members;
-	}
-
 	public Collection<Task> findDoneTask(Activity activity) {
 		Query query = em.createNamedQuery("findDoneTask");
 		query.setParameter("id",activity.getId());

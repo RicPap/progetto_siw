@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import model.Activity;
+import model.IndividualActivity;
 import model.Member;
 import model.Task;
 
@@ -15,6 +16,7 @@ public class SuperController {
 	private List<Task> doneTask;
 	private List<Member> allMember;
 	private Long[] entryId;
+	private boolean adding = false;
 	
 	public Member getCurrentMember() {
 		return currentMember;
@@ -109,4 +111,17 @@ public class SuperController {
 			return false;
 		return true;
 	}
-}
+	public boolean isAdding() {
+		return adding;
+	}
+	public void setAdding(boolean adding) {
+		this.adding = adding;
+	}
+	
+	public String addingMember() {
+		this.adding = true;
+		if(currentActivity.getClass().equals(IndividualActivity.class))
+			return "individualActivity";
+		return "groupActivity";
+	}
+	}
