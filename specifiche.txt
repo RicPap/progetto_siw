@@ -1,0 +1,28 @@
+Caso d'uso UC1: registrazione di un nuovo utente
+-Attore primario: utente non registrato
+-Scenario principale di successo:
+	L'utente non registrato apre il form di registrazione
+	L'utente inserisce correttamente i dati richiesti
+	Il sistema registra il nuovo utente nel database
+
+Caso d'uso UC2: creazione di una attività di gruppo
+-Attore primario: utente registrato
+-Scenario principale di successo:
+	L'utente indica di voler creare un'attività di gruppo
+	L'utente inserisce i dati richiesti
+	L'utente conferma l'immissione
+	Il sistema registra la nuova attività nel database
+
+
+Caso d'uso UC3: creazione di un task per un utente
+-Attore primario: utente registrato
+-Scenario principale di successo:
+	L'utente indica di voler creare un target task
+	L'utente inserisce i dati richiesti e seleziona l'utente a cui desidera assegnare 	il task
+	L'utente conferma l'immissione
+	Il sistema registra il nuovo task nel database
+
+Caso d'uso UC4:
+-Attore primario: utente registrato
+-Scenario principale di successo:
+	
